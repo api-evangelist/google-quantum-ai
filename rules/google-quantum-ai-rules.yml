@@ -1,0 +1,82 @@
+extends:
+  - spectral:oas
+formats:
+  - oas3
+rules:
+  google-quantum-ai-info-contact:
+    description: Google Quantum AI specs must declare a contact (cirq-maintainers).
+    given: $.info
+    severity: error
+    then:
+      field: contact
+      function: truthy
+  google-quantum-ai-info-license:
+    description: Google Quantum AI specs must declare a license.
+    given: $.info
+    severity: error
+    then:
+      field: license
+      function: truthy
+  google-quantum-ai-server-quantum-googleapis:
+    description: Servers must use the canonical quantum.googleapis.com host.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://quantum\\.googleapis\\.com"
+  google-quantum-ai-version-prefix:
+    description: Quantum Engine paths must be prefixed with the API version (v1alpha1).
+    given: $.paths.*~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v1alpha1(/|$)"
+  google-quantum-ai-operation-id-pascal-case:
+    description: Operation IDs follow Google's PascalCase convention (e.g., CreateQuantumProgram).
+    given: $.paths.*.*.operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]+$"
+  google-quantum-ai-summary-title-case:
+    description: Operation summaries should be in Title Case.
+    given: $.paths.*.*.summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z0-9]*)(\\s+[A-Z][a-zA-Z0-9]*)*$"
+  google-quantum-ai-tag-defined:
+    description: Every operation must be tagged with one of the Quantum Engine domain tags.
+    given: $.paths.*.*.tags[*]
+    severity: warn
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Programs
+          - Jobs
+          - Processors
+          - Calibrations
+          - Reservations
+          - Results
+  google-quantum-ai-oauth-required:
+    description: All operations should require Google Cloud OAuth 2.0.
+    given: $.security
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+  google-quantum-ai-resource-name-pattern:
+    description: Path parameters named `name` should describe a Quantum Engine resource hierarchy.
+    given: $.paths..parameters[?(@.name == 'name')]
+    severity: info
+    then:
+      field: description
+      function: truthy

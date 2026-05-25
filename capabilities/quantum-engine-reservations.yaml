@@ -1,0 +1,285 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Quantum Engine — Reservations
+  description: Create, update, cancel, and inspect reservations for time on Google's quantum processors,
+    plus list time slots, budgets, and grants.
+  tags:
+  - Google Quantum AI
+  - Quantum Engine
+  - Reservations
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_OAUTH_TOKEN: GOOGLE_OAUTH_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: quantum-engine-reservations
+    baseUri: https://quantum.googleapis.com
+    description: Quantum Engine Reservations REST surface.
+    resources:
+    - name: reservations
+      path: /v1alpha1/projects/{projectId}/processors/{processorId}/reservations
+      operations:
+      - name: createreservation
+        method: POST
+        description: Reserve a future time window on a processor.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: listreservations
+        method: GET
+        description: List reservations on a processor.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+    - name: reservation
+      path: /v1alpha1/projects/{projectId}/processors/{processorId}/reservations/{reservationId}
+      operations:
+      - name: getreservation
+        method: GET
+        description: Retrieve a single reservation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+        - name: reservationId
+          in: path
+          type: string
+          required: true
+      - name: updatereservation
+        method: PATCH
+        description: Update a reservation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+        - name: reservationId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletereservation
+        method: DELETE
+        description: Delete an upcoming reservation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+        - name: reservationId
+          in: path
+          type: string
+          required: true
+    - name: reservationCancel
+      path: /v1alpha1/projects/{projectId}/processors/{processorId}/reservations/{reservationId}:cancel
+      operations:
+      - name: cancelreservation
+        method: POST
+        description: Cancel an in-progress reservation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+        - name: reservationId
+          in: path
+          type: string
+          required: true
+    - name: timeSlots
+      path: /v1alpha1/projects/{projectId}/processors/{processorId}/timeSlots
+      operations:
+      - name: listtimeslots
+        method: GET
+        description: List processor time slots (OPEN_SWIM, MAINTENANCE, RESERVATION, UNALLOCATED).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: processorId
+          in: path
+          type: string
+          required: true
+    - name: reservationBudgets
+      path: /v1alpha1/projects/{projectId}/reservationBudgets
+      operations:
+      - name: listbudgets
+        method: GET
+        description: List reservation budgets for a project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.GOOGLE_OAUTH_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: quantum-engine-reservations-rest
+    port: 8080
+    description: REST adapter for Quantum Engine Reservations.
+    resources:
+    - path: /v1/projects/{projectId}/processors/{processorId}/reservations
+      name: reservations
+      operations:
+      - method: POST
+        name: createreservation
+        call: quantum-engine-reservations.createreservation
+        with:
+          projectId: rest.path.projectId
+          processorId: rest.path.processorId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listreservations
+        call: quantum-engine-reservations.listreservations
+        with:
+          projectId: rest.path.projectId
+          processorId: rest.path.processorId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quantum-engine-reservations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Quantum Engine Reservations.
+    tools:
+    - name: quantum-engine-create-reservation
+      description: Reserve a future time window on a quantum processor.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quantum-engine-reservations.createreservation
+      with:
+        projectId: tools.projectId
+        processorId: tools.processorId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-list-reservations
+      description: List reservations on a quantum processor.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quantum-engine-reservations.listreservations
+      with:
+        projectId: tools.projectId
+        processorId: tools.processorId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-cancel-reservation
+      description: Cancel an in-progress reservation.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quantum-engine-reservations.cancelreservation
+      with:
+        projectId: tools.projectId
+        processorId: tools.processorId
+        reservationId: tools.reservationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-list-time-slots
+      description: List processor time slots (open swim, maintenance, reservation, unallocated).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quantum-engine-reservations.listtimeslots
+      with:
+        projectId: tools.projectId
+        processorId: tools.processorId
+      outputParameters:
+      - type: object
+        mapping: $.

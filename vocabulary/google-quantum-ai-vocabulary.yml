@@ -1,0 +1,105 @@
+vocabulary: google-quantum-ai
+version: '1.0'
+description: |
+  Domain vocabulary used by Google Quantum AI's Quantum Engine API, Cirq, and the broader open-source
+  quantum stack (qsim, OpenFermion, Stim, Qualtran, ReCirq, TensorFlow Quantum).
+created: '2026-05-25'
+updated: '2026-05-25'
+operational:
+- term: Project
+  definition: Google Cloud project that scopes Quantum Engine resources (programs, jobs, processors,
+    reservations). Required for all API calls.
+- term: Program
+  definition: A serialised hardware-compatible quantum circuit uploaded to a project. Identified by
+    `projects/{project_id}/programs/{program_id}`.
+- term: Job
+  definition: An execution of a program against a processor or simulator. Carries a scheduling config,
+    run context, and execution status.
+- term: Run Context
+  definition: Parameter-sweep specification — repetitions, parameter resolvers, and sweep generators —
+    submitted with a job.
+- term: Result
+  definition: The measurement payload returned by a completed job, encoded as a serialised Cirq Result
+    proto.
+- term: Processor
+  definition: A physical quantum processing unit (Willow-, Sycamore-class) or simulator backend visible
+    to the project.
+- term: Calibration
+  definition: A timestamped snapshot of per-gate and per-qubit performance metrics (T1, T2, gate fidelity,
+    readout error) for a processor.
+- term: Device Specification
+  definition: The gate set, qubit topology, target sets, and gate durations supported by a processor,
+    serialised as a DeviceSpecification proto.
+- term: Reservation
+  definition: A contiguous window of processor time allocated to a project and optionally to a
+    whitelisted user set.
+- term: Time Slot
+  definition: A discrete window in the processor's schedule with type OPEN_SWIM, MAINTENANCE, RESERVATION,
+    or UNALLOCATED.
+- term: Open Swim
+  definition: A time slot during which any approved user can submit jobs to the processor (typically
+    capped at 5 minutes per job).
+- term: Reservation Grant
+  definition: A budget of processor time issued by Google (or by a sponsor) to one or more projects.
+- term: Reservation Budget
+  definition: The remaining unused portion of a reservation grant.
+quantum:
+- term: Qubit
+  definition: A quantum bit; the fundamental unit of quantum information.
+- term: Gate
+  definition: A unitary operation applied to one or more qubits (e.g., X, Y, Z, H, CNOT, CZ, iSWAP, fsim).
+- term: Circuit
+  definition: A sequence of gates and measurements organised into Moments, expressed in Cirq as a
+    `cirq.Circuit`.
+- term: Moment
+  definition: A maximal set of gates that can execute in parallel within a circuit.
+- term: Measurement
+  definition: A non-unitary projection that collapses a qubit's superposition to a classical bit.
+- term: NISQ
+  definition: Noisy Intermediate-Scale Quantum — the current hardware regime of 50–1000 noisy qubits
+    without full fault-tolerance.
+- term: Quantum Error Correction (QEC)
+  definition: Encoding logical qubits across many physical qubits to suppress noise; surface codes are
+    Willow's primary QEC family.
+- term: Surface Code
+  definition: A topological QEC code laid out on a 2D lattice of physical qubits, with logical error
+    rate falling exponentially in code distance once below threshold.
+- term: Below Threshold
+  definition: Operating regime in which adding more physical qubits per logical qubit reduces the logical
+    error rate — the Willow chip's headline result.
+- term: Quantum Advantage
+  definition: A computational task on which a quantum processor outperforms the best classical algorithm.
+    The Quantum Echoes algorithm on Willow demonstrates verifiable quantum advantage.
+hardware:
+- term: Willow
+  definition: Google Quantum AI's current-generation superconducting quantum processor demonstrating
+    below-threshold surface-code error correction.
+- term: Sycamore
+  definition: The 53-qubit superconducting processor used in Google's 2019 quantum-supremacy
+    experiment; precursor to Willow.
+- term: Quantum Virtual Machine (QVM)
+  definition: A noise-aware local simulator that mimics a specific Google processor's gate set,
+    topology, and calibration. The `willow_pink` QVM is included in Cirq v1.6.
+- term: Sampler
+  definition: The Cirq abstraction (`cirq.Sampler` and `cirq_google.ProcessorSampler`) used to execute
+    circuits and collect measurement statistics.
+software:
+- term: Cirq
+  definition: Google's Apache 2.0 Python framework for NISQ circuit construction, simulation, and
+    execution on Google and partner hardware.
+- term: cirq-google
+  definition: The Cirq subpackage that wraps the Quantum Engine gRPC service and exposes the Engine,
+    EngineProcessor, EngineJob, EngineProgram, and ProcessorSampler classes.
+- term: qsim
+  definition: A fast C++/CUDA state-vector simulator integrated into Cirq via qsimcirq.
+- term: OpenFermion
+  definition: A library for translating chemistry and materials problems into quantum circuits.
+- term: Stim
+  definition: A fast stabilizer-circuit simulator used for QEC research.
+- term: Qualtran
+  definition: A framework for expressing and resource-estimating fault-tolerant quantum algorithms.
+- term: TensorFlow Quantum
+  definition: A hybrid quantum-classical machine learning library that embeds Cirq circuits in
+    TensorFlow.
+- term: ReCirq
+  definition: A reproducible-experiment collection built on Cirq.

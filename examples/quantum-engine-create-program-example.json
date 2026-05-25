@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://quantum.googleapis.com/v1alpha1/projects/my-quantum-project/programs",
+    "headers": {
+      "Authorization": "Bearer <ADC access token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "description": "Two-qubit Bell-state preparation circuit",
+      "labels": {"team": "research", "experiment": "bell"},
+      "code": {
+        "@type": "type.googleapis.com/cirq.google.api.v2.Program",
+        "value": "<base64 serialised Program proto>"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "projects/my-quantum-project/programs/bell-state-2026-05-25",
+      "createTime": "2026-05-25T18:04:11Z",
+      "updateTime": "2026-05-25T18:04:11Z",
+      "description": "Two-qubit Bell-state preparation circuit",
+      "labels": {"team": "research", "experiment": "bell"},
+      "labelFingerprint": "Ag2nP1HnA0w="
+    }
+  }
+}

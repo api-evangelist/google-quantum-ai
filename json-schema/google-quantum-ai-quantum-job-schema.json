@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/google-quantum-ai/main/json-schema/google-quantum-ai-quantum-job-schema.json",
+  "title": "QuantumJob",
+  "description": "A Google Quantum Engine job — an execution of a quantum program against a processor or simulator.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Resource name `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.",
+      "pattern": "^projects/[^/]+/programs/[^/]+/jobs/[^/]+$"
+    },
+    "createTime": {"type": "string", "format": "date-time"},
+    "updateTime": {"type": "string", "format": "date-time"},
+    "labels": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "labelFingerprint": {"type": "string"},
+    "description": {"type": "string"},
+    "scheduling_config": {
+      "type": "object",
+      "properties": {
+        "processor_selector": {
+          "type": "object",
+          "properties": {
+            "processor_names": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "priority": {"type": "integer"}
+      }
+    },
+    "run_context": {
+      "type": "object",
+      "description": "Serialised google.protobuf.Any run context (sweep parameters, repetitions)."
+    },
+    "executionStatus": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["STATE_UNSPECIFIED", "READY", "RUNNING", "CANCELLING", "CANCELLED", "SUCCESS", "FAILURE"]
+        },
+        "processorName": {"type": "string"},
+        "failure": {
+          "type": "object",
+          "properties": {
+            "errorCode": {"type": "string"},
+            "errorMessage": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

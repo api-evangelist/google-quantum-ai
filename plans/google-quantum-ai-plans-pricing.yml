@@ -1,0 +1,90 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Google Quantum AI
+providerId: google-quantum-ai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Quantum Computing
+  - Quantum Engine
+  - Willow
+  - Sycamore
+  - Sponsored Access
+description: |
+  Access to the Google Quantum Engine API is not commercially metered. There is no public price list, no
+  per-shot fee, and no per-second processor charge. Access is gated by:
+    1. A Google Cloud project with the Quantum Computing API enabled and billing attached (no billable
+       Quantum Engine SKU appears today — billing is required only to keep the project active).
+    2. A Google sponsor adding the user to the approved list.
+    3. For the latest hardware, acceptance into the Willow Early Access Program (proposal-based).
+  All Google Quantum AI open-source software (Cirq, qsim, OpenFermion, Stim, Qualtran, ReCirq, Tesseract,
+  Unitary) is distributed free under the Apache 2.0 licence.
+sources:
+  - https://quantumai.google/cirq/google/access
+  - https://quantumai.google/cirq/google/concepts
+  - https://quantumai.google/willowearlyaccess
+  - https://github.com/quantumlib/Cirq/blob/main/LICENSE
+plans:
+  - id: google-quantum-ai-open-source
+    name: Open Source Software
+    type: free
+    description: Cirq, qsim, OpenFermion, Stim, Qualtran, ReCirq, Tesseract, Unitary, TensorFlow Quantum.
+      Apache 2.0; no account required.
+    entries:
+      - label: License
+        name: license
+        type: included
+        price: '0'
+        unit: 1
+        timeFrame: usage
+        geo: global
+        description: Apache 2.0 — free commercial and non-commercial use.
+  - id: google-quantum-ai-quantum-engine-approved
+    name: Quantum Engine (Approved Access)
+    type: approval-based
+    description: Sponsored access to the Quantum Engine API for circuit execution on Google quantum
+      processors. No per-job fee; usage is governed by reservation grants.
+    entries:
+      - label: Open-swim job runtime
+        name: open-swim-runtime
+        type: quota
+        metric: minutes
+        limit: 5
+        timeFrame: per-job
+        geo: global
+        unit: 1
+        price: 'Sponsored'
+        description: Maximum 5 minutes of processor time per job during open-swim periods.
+      - label: Reservation-grant runtime
+        name: reservation-runtime
+        type: quota
+        metric: hours
+        timeFrame: grant
+        geo: global
+        unit: 1
+        price: 'Sponsored'
+        description: Total runtime allocated to the project by a reservation grant.
+  - id: google-quantum-ai-willow-early-access
+    name: Willow Early Access Program
+    type: program
+    description: Proposal-based early access to the Willow processor before public availability.
+      Requires submitted proposal, dedicated PhD/postdoc operator, and selection by Google Quantum AI.
+    entries:
+      - label: Application deadline
+        name: deadline
+        type: program-window
+        price: 'Free'
+        unit: 1
+        timeFrame: usage
+        geo: global
+        description: Intake form due 2026-05-15; selection notifications by 2026-07-01.
+      - label: Hardware access
+        name: hardware
+        type: included
+        price: 'Sponsored'
+        unit: 1
+        timeFrame: program
+        geo: global
+        description: Time on the Willow chip for the accepted proposal's experiments.

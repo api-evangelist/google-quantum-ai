@@ -1,0 +1,260 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Quantum Engine — Programs
+  description: Manage quantum programs (uploaded hardware-compatible circuits) on Google's Quantum Engine
+    service. 6 operations covering create, list, get, update, delete, and delete-program lifecycle.
+  tags:
+  - Google Quantum AI
+  - Quantum Engine
+  - Programs
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_OAUTH_TOKEN: GOOGLE_OAUTH_TOKEN
+    GOOGLE_CLOUD_PROJECT: GOOGLE_CLOUD_PROJECT
+capability:
+  consumes:
+  - type: http
+    namespace: quantum-engine-programs
+    baseUri: https://quantum.googleapis.com
+    description: Quantum Engine Programs REST surface. Programs are serialised Cirq circuits scoped to a
+      Google Cloud project.
+    resources:
+    - name: programs
+      path: /v1alpha1/projects/{projectId}/programs
+      operations:
+      - name: createprogram
+        method: POST
+        description: Create a quantum program in a project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: listprograms
+        method: GET
+        description: List quantum programs in a project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+        - name: filter
+          in: query
+          type: string
+    - name: program
+      path: /v1alpha1/projects/{projectId}/programs/{programId}
+      operations:
+      - name: getprogram
+        method: GET
+        description: Retrieve a single quantum program.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: programId
+          in: path
+          type: string
+          required: true
+      - name: updateprogram
+        method: PATCH
+        description: Update a quantum program's mutable fields.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: programId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteprogram
+        method: DELETE
+        description: Delete a quantum program.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: programId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.GOOGLE_OAUTH_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: quantum-engine-programs-rest
+    port: 8080
+    description: REST adapter for Quantum Engine Programs.
+    resources:
+    - path: /v1/projects/{projectId}/programs
+      name: programs
+      description: REST surface for programs collection.
+      operations:
+      - method: POST
+        name: createprogram
+        description: Create quantum program.
+        call: quantum-engine-programs.createprogram
+        with:
+          projectId: rest.path.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listprograms
+        description: List quantum programs.
+        call: quantum-engine-programs.listprograms
+        with:
+          projectId: rest.path.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectId}/programs/{programId}
+      name: program
+      description: REST surface for a single program.
+      operations:
+      - method: GET
+        name: getprogram
+        description: Get quantum program.
+        call: quantum-engine-programs.getprogram
+        with:
+          projectId: rest.path.projectId
+          programId: rest.path.programId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateprogram
+        description: Update quantum program.
+        call: quantum-engine-programs.updateprogram
+        with:
+          projectId: rest.path.projectId
+          programId: rest.path.programId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteprogram
+        description: Delete quantum program.
+        call: quantum-engine-programs.deleteprogram
+        with:
+          projectId: rest.path.projectId
+          programId: rest.path.programId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quantum-engine-programs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Quantum Engine Programs.
+    tools:
+    - name: quantum-engine-create-program
+      description: Create a quantum program in a Google Cloud project.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quantum-engine-programs.createprogram
+      with:
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-list-programs
+      description: List quantum programs in a project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quantum-engine-programs.listprograms
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-get-program
+      description: Retrieve a quantum program.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quantum-engine-programs.getprogram
+      with:
+        projectId: tools.projectId
+        programId: tools.programId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-update-program
+      description: Update a quantum program.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quantum-engine-programs.updateprogram
+      with:
+        projectId: tools.projectId
+        programId: tools.programId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: quantum-engine-delete-program
+      description: Delete a quantum program.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quantum-engine-programs.deleteprogram
+      with:
+        projectId: tools.projectId
+        programId: tools.programId
+      outputParameters:
+      - type: object
+        mapping: $.

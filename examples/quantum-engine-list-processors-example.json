@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://quantum.googleapis.com/v1alpha1/projects/my-quantum-project/processors",
+    "headers": {
+      "Authorization": "Bearer <ADC access token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "processors": [
+        {
+          "name": "projects/my-quantum-project/processors/willow_pink",
+          "health": "OK",
+          "supportedDeviceTypes": ["QUANTUM_VIRTUAL_MACHINE", "WILLOW_HARDWARE"]
+        },
+        {
+          "name": "projects/my-quantum-project/processors/rainbow",
+          "health": "OK",
+          "supportedDeviceTypes": ["SYCAMORE_HARDWARE"]
+        }
+      ]
+    }
+  }
+}

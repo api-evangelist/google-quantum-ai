@@ -1,0 +1,74 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Google Quantum AI
+providerId: google-quantum-ai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - Quantum Computing
+  - Sponsored Access
+description: |
+  FinOps profile for Google Quantum AI. Unlike most Google Cloud services, the Quantum Engine API today
+  exposes no metered SKU on the Cloud Billing surface. Cost management therefore centres on:
+    - Sponsorship and approved-user lists (capacity-as-grant rather than pay-as-you-go).
+    - Reservation grants and budgets that allocate processor minutes/hours to a project.
+    - Open-source software costs (none — Apache 2.0).
+    - Indirect costs (engineering time, classical simulator compute for qsim, GPU hours for qsim/cuQuantum
+      and TensorFlow Quantum workloads).
+sources:
+  - https://quantumai.google/cirq/google/concepts
+  - https://quantumai.google/cirq/google/access
+  - https://quantumai.google/willowearlyaccess
+  - https://cloud.google.com/billing/docs
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Google LLC
+serviceCategory: Quantum Computing
+billingModel:
+  pricingCategory: Sponsored / Grant-Based
+  billingFrequency: Not Billed
+  billingCurrency: USD
+  chargeCategories:
+    - Usage (informational only — no charge)
+  primaryUnit: processor-minute
+  secondaryUnits:
+    - job
+    - shot
+    - qubit-second
+costAllocation:
+  recommendedDimensions:
+    - projectId
+    - processorId
+    - reservationGrantId
+    - jobLabels.team
+    - jobLabels.experiment
+  description: Allocate costs (even if zero) by tagging programs and jobs with the team and experiment
+    labels exposed by the Quantum Engine API. Labels propagate to job records and surface in
+    `listjobs` filters.
+budgeting:
+  recommendedControls:
+    - Track total processor-minutes consumed per reservation grant.
+    - Track open-swim minutes used per user via job-event timestamps.
+    - Track classical simulator GPU hours separately (these *do* incur Cloud Compute charges).
+optimisation:
+  recommendations:
+    - Use the willow_pink Quantum Virtual Machine (QVM) and qsim locally to debug before submitting hardware
+      jobs.
+    - Batch sweep parameters into a single job to amortise queueing overhead and stay under the 5-minute
+      open-swim cap.
+    - Schedule heavy workloads inside reservation windows; reserve open-swim for short interactive runs.
+    - Avoid leaving idle reservations on the calendar — cancel via :cancel to return time to the pool.
+reporting:
+  recommendedReports:
+    - Processor-minutes consumed per reservation grant per week.
+    - Open-swim minutes per approved user per month.
+    - Job success rate by processor and by calibration window.
+    - Classical simulator (qsim / cuQuantum) GPU hours per experiment.

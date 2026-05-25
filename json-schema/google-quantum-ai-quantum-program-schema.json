@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/google-quantum-ai/main/json-schema/google-quantum-ai-quantum-program-schema.json",
+  "title": "QuantumProgram",
+  "description": "A Google Quantum Engine program — a serialised, hardware-compatible Cirq circuit scoped to a Google Cloud project.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Resource name `projects/{project_id}/programs/{program_id}`.",
+      "pattern": "^projects/[^/]+/programs/[^/]+$"
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "description": "Key/value labels attached to the program."
+    },
+    "labelFingerprint": {"type": "string"},
+    "description": {"type": "string"},
+    "code": {
+      "type": "object",
+      "description": "Serialised Cirq/Quantum Engine circuit payload (google.protobuf.Any).",
+      "properties": {
+        "@type": {"type": "string"},
+        "value": {"type": "string", "contentEncoding": "base64"}
+      }
+    }
+  }
+}

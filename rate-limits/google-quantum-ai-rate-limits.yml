@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Google Quantum AI
+providerId: google-quantum-ai
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Quantum Computing
+  - Quantum Engine
+  - Quotas
+  - Reservations
+description: |
+  The Quantum Engine API itself does not publish per-second request rate limits in the same way as
+  consumer Google APIs. Throughput is governed by:
+    - Standard Google Cloud per-project quotas applied via the Cloud Quotas system.
+    - Per-job runtime caps (5 minutes maximum during OPEN_SWIM time slots).
+    - Reservation budgets that allocate total processor minutes/hours to a project.
+    - Processor TimeSlot scheduling (OPEN_SWIM, MAINTENANCE, RESERVATION, UNALLOCATED).
+  Approved users share processor capacity; queued jobs are scheduled by the Engine based on
+  reservation priority and OPEN_SWIM availability.
+sources:
+  - https://quantumai.google/cirq/google/concepts
+  - https://quantumai.google/cirq/google/access
+  - https://quantumai.google/cirq/google/engine
+headers:
+  limit: x-goog-quota-user
+  remaining: ''
+  reset: ''
+  retryAfter: retry-after
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: reservation-and-time-slot
+quotas:
+  - name: Per-job runtime (open swim)
+    scope: job
+    limit: 300
+    unit: seconds
+    description: A single job may not occupy more than 5 minutes of processor time during an OPEN_SWIM
+      slot.
+  - name: Processor reservation window
+    scope: reservation
+    limit: variable
+    unit: minutes
+    description: Granted as part of a reservation grant; consumed by jobs targeted at the reservation's
+      processor during its window.
+  - name: Cloud Quotas — list/get/create requests
+    scope: project
+    limit: variable
+    unit: requests
+    description: Standard Google Cloud per-minute API quotas applied to QuantumEngineService methods
+      via the Cloud Quotas system. Visible and adjustable in the GCP console.
+backoff:
+  strategy: exponential
+  initialDelay: 1s
+  maxDelay: 60s
+  jitter: true
+  description: Cirq's engine client retries transient gRPC UNAVAILABLE / RESOURCE_EXHAUSTED errors with
+    exponential backoff; user code should mirror this pattern when calling the REST surface directly.
+slotTypes:
+  - OPEN_SWIM
+  - MAINTENANCE
+  - RESERVATION
+  - UNALLOCATED
