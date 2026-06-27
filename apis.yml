@@ -261,7 +261,7 @@ common:
     type: Documentation
   - url: https://quantumai.google/willowearlyaccess
     name: Willow Early Access Program
-    type: SignUp
+    type: Signup
   - url: https://quantumai.google/learn/map
     name: Learning Map
     type: Training
@@ -282,37 +282,37 @@ common:
     type: GitHubOrganization
   - url: https://github.com/quantumlib/Cirq
     name: Cirq
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/qsim
     name: qsim
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/OpenFermion
     name: OpenFermion
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/Stim
     name: Stim
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/qualtran
     name: Qualtran
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/ReCirq
     name: ReCirq
     type: CodeExamples
   - url: https://github.com/quantumlib/tesseract-decoder
     name: Tesseract Decoder
-    type: Tool
+    type: Tools
   - url: https://github.com/quantumlib/unitary
     name: Unitary
-    type: SDK
+    type: SDKs
   - url: https://github.com/quantumlib/chromobius
     name: Chromobius
-    type: Tool
+    type: Tools
   - url: https://github.com/quantumlib/TypedUnits
     name: TypedUnits
-    type: SDK
+    type: SDKs
   - url: https://github.com/tensorflow/quantum
     name: TensorFlow Quantum
-    type: SDK
+    type: SDKs
   - url: https://pypi.org/project/cirq/
     name: Cirq on PyPI
     type: PackageURL
@@ -330,10 +330,10 @@ common:
     type: PackageURL
   - url: https://groups.google.com/g/cirq
     name: Cirq Users Mailing List
-    type: Forum
+    type: Forums
   - url: https://quantumcomputing.stackexchange.com/questions/tagged/cirq
     name: Cirq on Quantum Computing Stack Exchange
-    type: Forum
+    type: Forums
   - url: https://cloud.google.com/terms
     name: Google Cloud Terms of Service
     type: TermsOfService
