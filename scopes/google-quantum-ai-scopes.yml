@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/quantum-engine-api-openapi.yml
+schemes:
+- name: googleOAuth
+  source: openapi/quantum-engine-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.google.com/o/oauth2/auth
+    tokenUrl: https://oauth2.googleapis.com/token
+  description: OAuth 2.0 via Google Cloud Application Default Credentials.
+scopes:
+- scope: https://www.googleapis.com/auth/cloud-platform
+  description: Read/write access to Google Cloud resources, including Quantum Engine.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quantum-engine-api-openapi.yml

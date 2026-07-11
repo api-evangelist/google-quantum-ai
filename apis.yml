@@ -211,6 +211,8 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: OAuthScopes
+    url: scopes/google-quantum-ai-scopes.yml
   - url: https://quantumai.google/
     name: Google Quantum AI Portal
     type: Portal
