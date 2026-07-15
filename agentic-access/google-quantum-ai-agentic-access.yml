@@ -1,0 +1,412 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/quantum-engine-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 27
+  by_action_class:
+    acting: 12
+    connected: 15
+  by_consequence:
+    write: 12
+    read: 15
+  human_in_the_loop_required: 0
+operations:
+- path: /v1alpha1/{parent}/programs
+  method: post
+  operationId: CreateQuantumProgram
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/programs
+  method: get
+  operationId: ListQuantumPrograms
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}
+  method: get
+  operationId: GetQuantumProgram
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}
+  method: patch
+  operationId: UpdateQuantumProgram
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}
+  method: delete
+  operationId: DeleteQuantumProgram
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/jobs
+  method: post
+  operationId: CreateQuantumJob
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/jobs
+  method: get
+  operationId: ListQuantumJobs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/job
+  method: get
+  operationId: GetQuantumJob
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/job
+  method: patch
+  operationId: UpdateQuantumJob
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/job
+  method: delete
+  operationId: DeleteQuantumJob
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}:cancel
+  method: post
+  operationId: CancelQuantumJob
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/result
+  method: get
+  operationId: GetQuantumResult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/events
+  method: get
+  operationId: ListQuantumJobEvents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/processors
+  method: get
+  operationId: ListQuantumProcessors
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/processor
+  method: get
+  operationId: GetQuantumProcessor
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/calibrations
+  method: get
+  operationId: ListQuantumCalibrations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/calibration
+  method: get
+  operationId: GetQuantumCalibration
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/reservations
+  method: post
+  operationId: CreateQuantumReservation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/reservations
+  method: get
+  operationId: ListQuantumReservations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/reservation
+  method: get
+  operationId: GetQuantumReservation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/reservation
+  method: patch
+  operationId: UpdateQuantumReservation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/reservation
+  method: delete
+  operationId: DeleteQuantumReservation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}/reservation:cancel
+  method: post
+  operationId: CancelQuantumReservation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/timeSlots
+  method: get
+  operationId: ListQuantumTimeSlots
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/reservationBudgets
+  method: get
+  operationId: ListQuantumReservationBudgets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{parent}/reservationGrant
+  method: get
+  operationId: ListQuantumReservationGrants
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
+- path: /v1alpha1/{name}:reallocate
+  method: post
+  operationId: ReallocateQuantumReservationGrant
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - https://www.googleapis.com/auth/cloud-platform
