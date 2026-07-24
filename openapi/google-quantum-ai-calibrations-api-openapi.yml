@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Google Quantum Engine Calibrations API
+  version: v1alpha1
+  description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
+
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
+
+    accepts hardware-compatible quantum circuits as **programs**, executes them
+
+    as **jobs** on Google''s superconducting **processors** (Willow- and
+
+    Sycamore-class), manages **reservations** of processor time, and exposes
+
+    processor **calibration** snapshots. The canonical client is the
+
+    `cirq-google` Python package (`cirq_google.Engine`).
+
+
+    Access is restricted: callers must use a Google Cloud project with the
+
+    Quantum Engine API enabled, be on the approved-user list, and authenticate
+
+    using Application Default Credentials (OAuth 2.0 with the
+
+    `https://www.googleapis.com/auth/cloud-platform` scope).
+
+    '
+  contact:
+    name: Cirq Maintainers
+    email: cirq-maintainers@googlegroups.com
+    url: https://quantumai.google/cirq/google/engine
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://quantum.googleapis.com
+  description: Production Quantum Engine endpoint
+security:
+- googleOAuth:
+  - https://www.googleapis.com/auth/cloud-platform
+tags:
+- name: Calibrations
+  description: Periodic device performance snapshots.
+paths:
+  /v1alpha1/{parent}/calibrations:
+    parameters:
+    - $ref: '#/components/parameters/ProcessorParent'
+    get:
+      tags:
+      - Calibrations
+      operationId: ListQuantumCalibrations
+      summary: List Quantum Calibrations
+      description: List historical calibration snapshots for a processor.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: A page of calibrations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumCalibrationsResponse'
+  /v1alpha1/{name}/calibration:
+    parameters:
+    - $ref: '#/components/parameters/CalibrationName'
+    get:
+      tags:
+      - Calibrations
+      operationId: GetQuantumCalibration
+      summary: Get Quantum Calibration
+      description: Retrieve a single calibration snapshot for a processor.
+      responses:
+        '200':
+          description: The requested calibration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumCalibration'
+components:
+  schemas:
+    ListQuantumCalibrationsResponse:
+      type: object
+      properties:
+        calibrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumCalibration'
+        nextPageToken:
+          type: string
+    QuantumCalibration:
+      type: object
+      description: A calibration snapshot for a processor.
+      properties:
+        name:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
+  parameters:
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    CalibrationName:
+      name: name
+      in: path
+      required: true
+      description: The calibration resource name.
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+  securitySchemes:
+    googleOAuth:
+      type: oauth2
+      description: OAuth 2.0 via Google Cloud Application Default Credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Read/write access to Google Cloud resources, including Quantum Engine.

@@ -1,0 +1,399 @@
+openapi: 3.0.3
+info:
+  title: Google Quantum Engine Calibrations Reservations API
+  version: v1alpha1
+  description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
+
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
+
+    accepts hardware-compatible quantum circuits as **programs**, executes them
+
+    as **jobs** on Google''s superconducting **processors** (Willow- and
+
+    Sycamore-class), manages **reservations** of processor time, and exposes
+
+    processor **calibration** snapshots. The canonical client is the
+
+    `cirq-google` Python package (`cirq_google.Engine`).
+
+
+    Access is restricted: callers must use a Google Cloud project with the
+
+    Quantum Engine API enabled, be on the approved-user list, and authenticate
+
+    using Application Default Credentials (OAuth 2.0 with the
+
+    `https://www.googleapis.com/auth/cloud-platform` scope).
+
+    '
+  contact:
+    name: Cirq Maintainers
+    email: cirq-maintainers@googlegroups.com
+    url: https://quantumai.google/cirq/google/engine
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://quantum.googleapis.com
+  description: Production Quantum Engine endpoint
+security:
+- googleOAuth:
+  - https://www.googleapis.com/auth/cloud-platform
+tags:
+- name: Reservations
+  description: Processor time-slot reservations and budgets.
+paths:
+  /v1alpha1/{parent}/reservations:
+    parameters:
+    - $ref: '#/components/parameters/ProcessorParent'
+    post:
+      tags:
+      - Reservations
+      operationId: CreateQuantumReservation
+      summary: Create Quantum Reservation
+      description: Reserve a future time window on a quantum processor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuantumReservation'
+      responses:
+        '200':
+          description: Reservation created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumReservation'
+    get:
+      tags:
+      - Reservations
+      operationId: ListQuantumReservations
+      summary: List Quantum Reservations
+      description: List reservations on a processor.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: A page of reservations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumReservationsResponse'
+  /v1alpha1/{name}/reservation:
+    parameters:
+    - $ref: '#/components/parameters/ReservationName'
+    get:
+      tags:
+      - Reservations
+      operationId: GetQuantumReservation
+      summary: Get Quantum Reservation
+      description: Retrieve a single processor reservation.
+      responses:
+        '200':
+          description: The requested reservation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumReservation'
+    patch:
+      tags:
+      - Reservations
+      operationId: UpdateQuantumReservation
+      summary: Update Quantum Reservation
+      description: Update a reservation's window or whitelisted users.
+      parameters:
+      - $ref: '#/components/parameters/UpdateMask'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuantumReservation'
+      responses:
+        '200':
+          description: Updated reservation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumReservation'
+    delete:
+      tags:
+      - Reservations
+      operationId: DeleteQuantumReservation
+      summary: Delete Quantum Reservation
+      description: Delete an upcoming reservation.
+      responses:
+        '200':
+          description: Reservation deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empty'
+  /v1alpha1/{name}/reservation:cancel:
+    parameters:
+    - $ref: '#/components/parameters/ReservationName'
+    post:
+      tags:
+      - Reservations
+      operationId: CancelQuantumReservation
+      summary: Cancel Quantum Reservation
+      description: Cancel an in-progress reservation, freeing its remaining time.
+      responses:
+        '200':
+          description: Reservation cancellation accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empty'
+  /v1alpha1/{parent}/timeSlots:
+    parameters:
+    - $ref: '#/components/parameters/ProcessorParent'
+    get:
+      tags:
+      - Reservations
+      operationId: ListQuantumTimeSlots
+      summary: List Quantum Time Slots
+      description: List the OPEN_SWIM / MAINTENANCE / RESERVATION / UNALLOCATED time slots for a processor.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: A page of time slots.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumTimeSlotsResponse'
+  /v1alpha1/{parent}/reservationBudgets:
+    parameters:
+    - $ref: '#/components/parameters/ParentProject'
+    get:
+      tags:
+      - Reservations
+      operationId: ListQuantumReservationBudgets
+      summary: List Quantum Reservation Budgets
+      description: List the reservation budgets allocated to a project.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: A page of reservation budgets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumReservationBudgetsResponse'
+  /v1alpha1/{parent}/reservationGrant:
+    parameters:
+    - $ref: '#/components/parameters/ParentProject'
+    get:
+      tags:
+      - Reservations
+      operationId: ListQuantumReservationGrants
+      summary: List Quantum Reservation Grants
+      description: List the reservation grants (sponsorship records) available to a project.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: A page of reservation grants.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumReservationGrantsResponse'
+  /v1alpha1/{name}:reallocate:
+    parameters:
+    - $ref: '#/components/parameters/ReservationGrantName'
+    post:
+      tags:
+      - Reservations
+      operationId: ReallocateQuantumReservationGrant
+      summary: Reallocate Quantum Reservation Grant
+      description: Move budget between projects sharing a reservation grant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReallocateRequest'
+      responses:
+        '200':
+          description: Grant reallocated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumReservationGrant'
+components:
+  schemas:
+    ListQuantumTimeSlotsResponse:
+      type: object
+      properties:
+        timeSlots:
+          type: array
+          items:
+            type: object
+            properties:
+              startTime:
+                type: string
+                format: date-time
+              endTime:
+                type: string
+                format: date-time
+              slotType:
+                type: string
+                enum:
+                - TIME_SLOT_TYPE_UNSPECIFIED
+                - OPEN_SWIM
+                - MAINTENANCE
+                - RESERVATION
+                - UNALLOCATED
+        nextPageToken:
+          type: string
+    ListQuantumReservationsResponse:
+      type: object
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumReservation'
+        nextPageToken:
+          type: string
+    Empty:
+      type: object
+      description: An empty response body.
+    ReallocateRequest:
+      type: object
+      properties:
+        projectId:
+          type: string
+        duration:
+          type: string
+          description: Duration in seconds (e.g. `3600s`).
+    ListQuantumReservationBudgetsResponse:
+      type: object
+      properties:
+        reservationBudgets:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              grantedDuration:
+                type: string
+              availableDuration:
+                type: string
+        nextPageToken:
+          type: string
+    QuantumReservation:
+      type: object
+      description: A reservation of processor time.
+      properties:
+        name:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        whitelistedUsers:
+          type: array
+          items:
+            type: string
+    ListQuantumReservationGrantsResponse:
+      type: object
+      properties:
+        reservationGrants:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumReservationGrant'
+        nextPageToken:
+          type: string
+    QuantumReservationGrant:
+      type: object
+      description: A reservation budget allocation granted to a project.
+      properties:
+        name:
+          type: string
+        grantedDuration:
+          type: string
+        consumedDuration:
+          type: string
+        whitelistedProjects:
+          type: array
+          items:
+            type: string
+  parameters:
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    ReservationGrantName:
+      name: name
+      in: path
+      required: true
+      description: The reservation grant resource name.
+      schema:
+        type: string
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    ReservationName:
+      name: name
+      in: path
+      required: true
+      description: The reservation resource name.
+      schema:
+        type: string
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+  securitySchemes:
+    googleOAuth:
+      type: oauth2
+      description: OAuth 2.0 via Google Cloud Application Default Credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Read/write access to Google Cloud resources, including Quantum Engine.

@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Google Quantum Engine Calibrations Results API
+  version: v1alpha1
+  description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
+
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
+
+    accepts hardware-compatible quantum circuits as **programs**, executes them
+
+    as **jobs** on Google''s superconducting **processors** (Willow- and
+
+    Sycamore-class), manages **reservations** of processor time, and exposes
+
+    processor **calibration** snapshots. The canonical client is the
+
+    `cirq-google` Python package (`cirq_google.Engine`).
+
+
+    Access is restricted: callers must use a Google Cloud project with the
+
+    Quantum Engine API enabled, be on the approved-user list, and authenticate
+
+    using Application Default Credentials (OAuth 2.0 with the
+
+    `https://www.googleapis.com/auth/cloud-platform` scope).
+
+    '
+  contact:
+    name: Cirq Maintainers
+    email: cirq-maintainers@googlegroups.com
+    url: https://quantumai.google/cirq/google/engine
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://quantum.googleapis.com
+  description: Production Quantum Engine endpoint
+security:
+- googleOAuth:
+  - https://www.googleapis.com/auth/cloud-platform
+tags:
+- name: Results
+  description: Measurement results returned by completed jobs.
+paths:
+  /v1alpha1/{parent}/result:
+    parameters:
+    - $ref: '#/components/parameters/JobParent'
+    get:
+      tags:
+      - Results
+      operationId: GetQuantumResult
+      summary: Get Quantum Result
+      description: Retrieve the serialised measurement result of a completed quantum job.
+      responses:
+        '200':
+          description: Job result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumResult'
+components:
+  schemas:
+    QuantumResult:
+      type: object
+      description: Measurement results for a completed quantum job.
+      properties:
+        parent:
+          type: string
+        result:
+          type: object
+          description: Serialised `google.protobuf.Any` Cirq result payload.
+  parameters:
+    JobParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
+  securitySchemes:
+    googleOAuth:
+      type: oauth2
+      description: OAuth 2.0 via Google Cloud Application Default Credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Read/write access to Google Cloud resources, including Quantum Engine.

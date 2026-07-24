@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: Google Quantum Engine Calibrations Processors API
+  version: v1alpha1
+  description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
+
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
+
+    accepts hardware-compatible quantum circuits as **programs**, executes them
+
+    as **jobs** on Google''s superconducting **processors** (Willow- and
+
+    Sycamore-class), manages **reservations** of processor time, and exposes
+
+    processor **calibration** snapshots. The canonical client is the
+
+    `cirq-google` Python package (`cirq_google.Engine`).
+
+
+    Access is restricted: callers must use a Google Cloud project with the
+
+    Quantum Engine API enabled, be on the approved-user list, and authenticate
+
+    using Application Default Credentials (OAuth 2.0 with the
+
+    `https://www.googleapis.com/auth/cloud-platform` scope).
+
+    '
+  contact:
+    name: Cirq Maintainers
+    email: cirq-maintainers@googlegroups.com
+    url: https://quantumai.google/cirq/google/engine
+  license:
+    name: Google APIs Terms of Service
+    url: https://developers.google.com/terms
+servers:
+- url: https://quantum.googleapis.com
+  description: Production Quantum Engine endpoint
+security:
+- googleOAuth:
+  - https://www.googleapis.com/auth/cloud-platform
+tags:
+- name: Processors
+  description: Quantum processing units (Willow, Sycamore-class) available to the project.
+paths:
+  /v1alpha1/{parent}/processors:
+    parameters:
+    - $ref: '#/components/parameters/ParentProject'
+    get:
+      tags:
+      - Processors
+      operationId: ListQuantumProcessors
+      summary: List Quantum Processors
+      description: List processors visible to the Google Cloud project.
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: A page of processors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListQuantumProcessorsResponse'
+  /v1alpha1/{name}/processor:
+    parameters:
+    - $ref: '#/components/parameters/ProcessorName'
+    get:
+      tags:
+      - Processors
+      operationId: GetQuantumProcessor
+      summary: Get Quantum Processor
+      description: Retrieve a single quantum processor and its current device specification.
+      responses:
+        '200':
+          description: The requested processor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantumProcessor'
+components:
+  schemas:
+    ListQuantumProcessorsResponse:
+      type: object
+      properties:
+        processors:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumProcessor'
+        nextPageToken:
+          type: string
+    QuantumProcessor:
+      type: object
+      description: A quantum processing unit available to the project.
+      properties:
+        name:
+          type: string
+        health:
+          type: string
+          enum:
+          - HEALTH_UNSPECIFIED
+          - OK
+          - DOWN
+          - UNAVAILABLE
+        expectedDownTime:
+          type: string
+          format: date-time
+        expectedRecoveryTime:
+          type: string
+          format: date-time
+        supportedDeviceTypes:
+          type: array
+          items:
+            type: string
+        deviceSpec:
+          type: object
+          description: Serialised `DeviceSpecification` protobuf.
+  parameters:
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    ProcessorName:
+      name: name
+      in: path
+      required: true
+      description: The processor resource name.
+      schema:
+        type: string
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+  securitySchemes:
+    googleOAuth:
+      type: oauth2
+      description: OAuth 2.0 via Google Cloud Application Default Credentials.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Read/write access to Google Cloud resources, including Quantum Engine.
