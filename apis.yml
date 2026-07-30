@@ -1,199 +1,311 @@
 aid: google-quantum-ai
 url: https://raw.githubusercontent.com/api-evangelist/google-quantum-ai/refs/heads/main/apis.yml
 apis:
-  - aid: google-quantum-ai:quantum-engine-api
-    name: Google Quantum Engine API
-    tags:
-      - Quantum Computing
-      - Quantum Engine
-      - Google Cloud
-      - Hardware
-      - NISQ
-    humanURL: https://quantumai.google/cirq/google/engine
-    baseURL: https://quantum.googleapis.com
-    properties:
-      - url: https://quantumai.google/cirq/google/engine
-        type: Documentation
-      - url: https://quantumai.google/cirq/google/concepts
-        type: Documentation
-      - url: https://quantumai.google/cirq/google/access
-        type: Documentation
-      - url: https://quantumai.google/reference/python/cirq_google/engine/Engine
-        type: Documentation
-      - url: openapi/quantum-engine-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/google-quantum-ai-quantum-program-schema.json
-        type: JSONSchema
-      - url: json-schema/google-quantum-ai-quantum-job-schema.json
-        type: JSONSchema
-      - url: json-ld/google-quantum-ai-context.jsonld
-        type: JSONLD
-    description: >-
-      The Quantum Engine API (quantum.googleapis.com, v1alpha1) lets approved Google Cloud projects upload quantum
-      circuits as programs, run them as jobs on Google's superconducting quantum processors (Willow, Sycamore-class),
-      inspect device specifications and calibrations, and reserve processor time. The canonical client is the
-      cirq-google Python package (cirq_google.Engine), which wraps the gRPC service exposed by
-      google.cloud.quantum.v1alpha1.QuantumEngineService. Authentication uses Google Cloud Application Default
-      Credentials and standard IAM; access requires Google sponsorship plus inclusion on the approved-user list.
-  - aid: google-quantum-ai:cirq
-    name: Cirq
-    tags:
-      - Quantum Computing
-      - SDK
-      - Python
-      - NISQ
-      - Open Source
-    humanURL: https://quantumai.google/cirq
-    properties:
-      - url: https://quantumai.google/cirq
-        type: Documentation
-      - url: https://github.com/quantumlib/Cirq
-        type: SourceCode
-      - url: https://pypi.org/project/cirq/
-        type: PackageURL
-      - url: https://quantumai.google/reference/python/cirq/all_symbols
-        type: Documentation
-      - url: https://quantumai.google/cirq/start/install
-        type: GettingStarted
-    description: >-
-      Cirq is an Apache 2.0 Python framework for designing, manipulating, simulating, and executing Noisy
-      Intermediate-Scale Quantum (NISQ) circuits. Cirq is the canonical client library for Google's Quantum Engine, with
-      cirq-google providing typed access to programs, jobs, processors, reservations, and calibrations. Cirq v1.6.x
-      supports Python 3.11+ and ships dedicated subpackages for AQT, IonQ, Pasqal, and Google hardware backends.
-  - aid: google-quantum-ai:qsim
-    name: qsim
-    tags:
-      - Quantum Computing
-      - Simulation
-      - Performance
-      - Open Source
-    humanURL: https://quantumai.google/qsim
-    properties:
-      - url: https://quantumai.google/qsim
-        type: Documentation
-      - url: https://github.com/quantumlib/qsim
-        type: SourceCode
-      - url: https://pypi.org/project/qsimcirq/
-        type: PackageURL
-    description: >-
-      qsim is a high-performance C++ state-vector simulator with a Python (qsimcirq) binding that plugs directly into
-      Cirq. It is optimised for AVX/AVX-512, CUDA, and cuQuantum backends and is the default classical engine for
-      benchmarking Cirq circuits at scales of 30+ qubits before submitting to hardware.
-  - aid: google-quantum-ai:openfermion
-    name: OpenFermion
-    tags:
-      - Quantum Computing
-      - Chemistry
-      - Materials Science
-      - Open Source
-    humanURL: https://quantumai.google/openfermion
-    properties:
-      - url: https://quantumai.google/openfermion
-        type: Documentation
-      - url: https://github.com/quantumlib/OpenFermion
-        type: SourceCode
-      - url: https://pypi.org/project/openfermion/
-        type: PackageURL
-    description: >-
-      OpenFermion is an Apache 2.0 library for translating quantum chemistry and materials science problems (electronic
-      structure, fermionic operators, second quantisation) into quantum circuits suitable for Cirq and other backends.
-      Plugin packages (openfermion-pyscf, openfermion-psi4) bridge to classical chemistry stacks.
-  - aid: google-quantum-ai:stim
-    name: Stim
-    tags:
-      - Quantum Computing
-      - Error Correction
-      - Stabilizer
-      - Open Source
-    humanURL: https://github.com/quantumlib/Stim
-    properties:
-      - url: https://github.com/quantumlib/Stim
-        type: SourceCode
-      - url: https://pypi.org/project/stim/
-        type: PackageURL
-    description: >-
-      Stim is a fast stabilizer-circuit simulator and detector-error-model toolchain that underpins Google Quantum AI's
-      quantum error-correction work, including the Willow surface-code experiments. It exposes Python and C++ APIs and
-      pairs with PyMatching and Tesseract decoders.
-  - aid: google-quantum-ai:qualtran
-    name: Qualtran
-    tags:
-      - Quantum Computing
-      - Algorithms
-      - Resource Estimation
-      - Open Source
-    humanURL: https://github.com/quantumlib/qualtran
-    properties:
-      - url: https://github.com/quantumlib/qualtran
-        type: SourceCode
-      - url: https://pypi.org/project/qualtran/
-        type: PackageURL
-    description: >-
-      Qualtran provides abstractions (Bloqs) for expressing, decomposing, and resource-estimating fault-tolerant quantum
-      algorithms. It is Google Quantum AI's framework for reasoning about future error-corrected workloads on hardware
-      beyond Willow.
-  - aid: google-quantum-ai:tensorflow-quantum
-    name: TensorFlow Quantum
-    tags:
-      - Quantum Computing
-      - Machine Learning
-      - Hybrid
-      - Open Source
-    humanURL: https://www.tensorflow.org/quantum
-    properties:
-      - url: https://www.tensorflow.org/quantum
-        type: Documentation
-      - url: https://github.com/tensorflow/quantum
-        type: SourceCode
-      - url: https://pypi.org/project/tensorflow-quantum/
-        type: PackageURL
-    description: >-
-      TensorFlow Quantum (TFQ) is a hybrid quantum-classical machine learning library that integrates Cirq circuits as
-      differentiable layers inside TensorFlow/Keras pipelines. Maintained jointly by Google Quantum AI and the
-      TensorFlow team.
-  - aid: google-quantum-ai:recirq
-    name: ReCirq
-    tags:
-      - Quantum Computing
-      - Research
-      - Experiments
-      - Open Source
-    humanURL: https://github.com/quantumlib/ReCirq
-    properties:
-      - url: https://github.com/quantumlib/ReCirq
-        type: SourceCode
-    description: >-
-      ReCirq is a research-grade collection of reproducible Cirq experiments and applications published by Google
-      Quantum AI, covering Fermi-Hubbard simulations, quantum chemistry benchmarks, OTOC measurements, QAOA, and related
-      workloads.
-  - aid: google-quantum-ai:tesseract-decoder
-    name: Tesseract Decoder
-    tags:
-      - Quantum Computing
-      - Error Correction
-      - Decoder
-      - Open Source
-    humanURL: https://github.com/quantumlib/tesseract-decoder
-    properties:
-      - url: https://github.com/quantumlib/tesseract-decoder
-        type: SourceCode
-    description: >-
-      Tesseract is a search-based maximum-likelihood decoder for quantum error correction that accompanies Stim. It
-      targets surface-code and color-code decoding workloads used in Willow-era QEC demonstrations.
-  - aid: google-quantum-ai:unitary
-    name: Unitary
-    tags:
-      - Quantum Computing
-      - Games
-      - Education
-      - Open Source
-    humanURL: https://github.com/quantumlib/unitary
-    properties:
-      - url: https://github.com/quantumlib/unitary
-        type: SourceCode
-    description: >-
-      Unitary is an API library for adding quantum behaviours (superposition, entanglement, measurement) into classical
-      games and interactive software, used in Google Quantum AI's educational outreach work.
+- aid: google-quantum-ai:cirq
+  name: Cirq
+  tags:
+  - Quantum Computing
+  - SDK
+  - Python
+  - NISQ
+  - Open Source
+  humanURL: https://quantumai.google/cirq
+  properties:
+  - url: https://quantumai.google/cirq
+    type: Documentation
+  - url: https://github.com/quantumlib/Cirq
+    type: SourceCode
+  - url: https://pypi.org/project/cirq/
+    type: PackageURL
+  - url: https://quantumai.google/reference/python/cirq/all_symbols
+    type: Documentation
+  - url: https://quantumai.google/cirq/start/install
+    type: GettingStarted
+  description: >-
+    Cirq is an Apache 2.0 Python framework for designing, manipulating, simulating, and executing Noisy
+    Intermediate-Scale Quantum (NISQ) circuits. Cirq is the canonical client library for Google's Quantum
+    Engine, with cirq-google providing typed access to programs, jobs, processors, reservations, and calibrations.
+    Cirq v1.6.x supports Python 3.11+ and ships dedicated subpackages for AQT, IonQ, Pasqal, and Google
+    hardware backends.
+- aid: google-quantum-ai:qsim
+  name: qsim
+  tags:
+  - Quantum Computing
+  - Simulation
+  - Performance
+  - Open Source
+  humanURL: https://quantumai.google/qsim
+  properties:
+  - url: https://quantumai.google/qsim
+    type: Documentation
+  - url: https://github.com/quantumlib/qsim
+    type: SourceCode
+  - url: https://pypi.org/project/qsimcirq/
+    type: PackageURL
+  description: >-
+    qsim is a high-performance C++ state-vector simulator with a Python (qsimcirq) binding that plugs
+    directly into Cirq. It is optimised for AVX/AVX-512, CUDA, and cuQuantum backends and is the default
+    classical engine for benchmarking Cirq circuits at scales of 30+ qubits before submitting to hardware.
+- aid: google-quantum-ai:openfermion
+  name: OpenFermion
+  tags:
+  - Quantum Computing
+  - Chemistry
+  - Materials Science
+  - Open Source
+  humanURL: https://quantumai.google/openfermion
+  properties:
+  - url: https://quantumai.google/openfermion
+    type: Documentation
+  - url: https://github.com/quantumlib/OpenFermion
+    type: SourceCode
+  - url: https://pypi.org/project/openfermion/
+    type: PackageURL
+  description: >-
+    OpenFermion is an Apache 2.0 library for translating quantum chemistry and materials science problems
+    (electronic structure, fermionic operators, second quantisation) into quantum circuits suitable for
+    Cirq and other backends. Plugin packages (openfermion-pyscf, openfermion-psi4) bridge to classical
+    chemistry stacks.
+- aid: google-quantum-ai:stim
+  name: Stim
+  tags:
+  - Quantum Computing
+  - Error Correction
+  - Stabilizer
+  - Open Source
+  humanURL: https://github.com/quantumlib/Stim
+  properties:
+  - url: https://github.com/quantumlib/Stim
+    type: SourceCode
+  - url: https://pypi.org/project/stim/
+    type: PackageURL
+  description: >-
+    Stim is a fast stabilizer-circuit simulator and detector-error-model toolchain that underpins Google
+    Quantum AI's quantum error-correction work, including the Willow surface-code experiments. It exposes
+    Python and C++ APIs and pairs with PyMatching and Tesseract decoders.
+- aid: google-quantum-ai:qualtran
+  name: Qualtran
+  tags:
+  - Quantum Computing
+  - Algorithms
+  - Resource Estimation
+  - Open Source
+  humanURL: https://github.com/quantumlib/qualtran
+  properties:
+  - url: https://github.com/quantumlib/qualtran
+    type: SourceCode
+  - url: https://pypi.org/project/qualtran/
+    type: PackageURL
+  description: >-
+    Qualtran provides abstractions (Bloqs) for expressing, decomposing, and resource-estimating fault-tolerant
+    quantum algorithms. It is Google Quantum AI's framework for reasoning about future error-corrected
+    workloads on hardware beyond Willow.
+- aid: google-quantum-ai:tensorflow-quantum
+  name: TensorFlow Quantum
+  tags:
+  - Quantum Computing
+  - Machine Learning
+  - Hybrid
+  - Open Source
+  humanURL: https://www.tensorflow.org/quantum
+  properties:
+  - url: https://www.tensorflow.org/quantum
+    type: Documentation
+  - url: https://github.com/tensorflow/quantum
+    type: SourceCode
+  - url: https://pypi.org/project/tensorflow-quantum/
+    type: PackageURL
+  description: >-
+    TensorFlow Quantum (TFQ) is a hybrid quantum-classical machine learning library that integrates Cirq
+    circuits as differentiable layers inside TensorFlow/Keras pipelines. Maintained jointly by Google
+    Quantum AI and the TensorFlow team.
+- aid: google-quantum-ai:recirq
+  name: ReCirq
+  tags:
+  - Quantum Computing
+  - Research
+  - Experiments
+  - Open Source
+  humanURL: https://github.com/quantumlib/ReCirq
+  properties:
+  - url: https://github.com/quantumlib/ReCirq
+    type: SourceCode
+  description: >-
+    ReCirq is a research-grade collection of reproducible Cirq experiments and applications published
+    by Google Quantum AI, covering Fermi-Hubbard simulations, quantum chemistry benchmarks, OTOC measurements,
+    QAOA, and related workloads.
+- aid: google-quantum-ai:tesseract-decoder
+  name: Tesseract Decoder
+  tags:
+  - Quantum Computing
+  - Error Correction
+  - Decoder
+  - Open Source
+  humanURL: https://github.com/quantumlib/tesseract-decoder
+  properties:
+  - url: https://github.com/quantumlib/tesseract-decoder
+    type: SourceCode
+  description: >-
+    Tesseract is a search-based maximum-likelihood decoder for quantum error correction that accompanies
+    Stim. It targets surface-code and color-code decoding workloads used in Willow-era QEC demonstrations.
+- aid: google-quantum-ai:unitary
+  name: Unitary
+  tags:
+  - Quantum Computing
+  - Games
+  - Education
+  - Open Source
+  humanURL: https://github.com/quantumlib/unitary
+  properties:
+  - url: https://github.com/quantumlib/unitary
+    type: SourceCode
+  description: >-
+    Unitary is an API library for adding quantum behaviours (superposition, entanglement, measurement)
+    into classical games and interactive software, used in Google Quantum AI's educational outreach work.
+- aid: google-quantum-ai:google-quantum-ai-calibrations-api
+  name: Google Quantum AI Calibrations API
+  description: Periodic device performance snapshots.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Calibrations
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-calibrations-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
+- aid: google-quantum-ai:google-quantum-ai-jobs-api
+  name: Google Quantum AI Jobs API
+  description: Executions of a program against a processor or simulator backend.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
+- aid: google-quantum-ai:google-quantum-ai-processors-api
+  name: Google Quantum AI Processors API
+  description: Quantum processing units (Willow, Sycamore-class) available to the project.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Processors
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-processors-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
+- aid: google-quantum-ai:google-quantum-ai-programs-api
+  name: Google Quantum AI Programs API
+  description: Hardware-compatible circuits uploaded to a Google Cloud project.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-programs-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
+- aid: google-quantum-ai:google-quantum-ai-reservations-api
+  name: Google Quantum AI Reservations API
+  description: Processor time-slot reservations and budgets.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Reservations
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-reservations-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
+- aid: google-quantum-ai:google-quantum-ai-results-api
+  name: Google Quantum AI Results API
+  description: Measurement results returned by completed jobs.
+  humanURL: https://quantumai.google/cirq/google/engine
+  baseURL: https://quantum.googleapis.com
+  tags:
+  - Results
+  properties:
+  - type: OpenAPI
+    url: openapi/google-quantum-ai-results-api-openapi.yml
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/engine
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/concepts
+  - type: Documentation
+    url: https://quantumai.google/cirq/google/access
+  - type: Documentation
+    url: https://quantumai.google/reference/python/cirq_google/engine/Engine
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-program-schema.json
+  - type: JSONSchema
+    url: json-schema/google-quantum-ai-quantum-job-schema.json
+  - type: JSONLD
+    url: json-ld/google-quantum-ai-context.jsonld
 name: Google Quantum AI
 tags:
   - Quantum Computing
@@ -208,9 +320,24 @@ tags:
   - Superconducting Qubits
   - Google Cloud
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-quantum-ai.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/google-quantum-ai/overview
   - type: AgenticAccess
     url: agentic-access/google-quantum-ai-agentic-access.yml
   - type: DomainSecurity
