@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "c093f2c8-176b-47e7-b336-ab38abe7e59f",
+    "name": "Google Quantum Engine Calibrations Results API",
+    "description": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:50:16.000Z",
+    "updatedAt": "2026-07-28T01:50:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c093f2c8-176b-47e7-b336-ab38abe7e59f"
+  },
+  "item": [
+    {
+      "name": "v1alpha1",
+      "item": [
+        {
+          "name": "{parent}",
+          "item": [
+            {
+              "name": "result",
+              "item": [
+                {
+                  "name": "Get Quantum Result",
+                  "id": "8ed8ffce-d84b-4a40-b1a1-13b93b082e4b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/result",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "result"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a9664e03-f81d-4e36-afb8-bf584294b188",
+                          "key": "parent",
+                          "value": "projects/b%=m/programs/{h>GLyBjcl/jobs/;ql",
+                          "description": "(Required) The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the serialised measurement result of a completed quantum job."
+                  },
+                  "response": [
+                    {
+                      "id": "e5b3490e-c889-4b3c-9db4-5c117f5d58c1",
+                      "name": "Job result.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/result",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "result"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"parent\": \"<string>\",\n  \"result\": {}\n}",
+                      "createdAt": "2026-07-28T01:50:17.000Z",
+                      "updatedAt": "2026-07-28T01:50:17.000Z",
+                      "uid": "35240-e5b3490e-c889-4b3c-9db4-5c117f5d58c1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:17.000Z",
+                  "updatedAt": "2026-07-28T01:50:17.000Z",
+                  "uid": "35240-8ed8ffce-d84b-4a40-b1a1-13b93b082e4b"
+                }
+              ],
+              "id": "f40ad2ef-ce6f-446b-9baf-7006ba2eee59",
+              "createdAt": "2026-07-28T01:50:17.000Z",
+              "updatedAt": "2026-07-28T01:50:17.000Z",
+              "uid": "35240-f40ad2ef-ce6f-446b-9baf-7006ba2eee59"
+            }
+          ],
+          "id": "4e31c961-f68c-47d2-a06d-6c804069603a",
+          "createdAt": "2026-07-28T01:50:17.000Z",
+          "updatedAt": "2026-07-28T01:50:17.000Z",
+          "uid": "35240-4e31c961-f68c-47d2-a06d-6c804069603a"
+        }
+      ],
+      "id": "ab374928-bcf7-469d-902b-2b50f944d5ad",
+      "createdAt": "2026-07-28T01:50:17.000Z",
+      "updatedAt": "2026-07-28T01:50:17.000Z",
+      "uid": "35240-ab374928-bcf7-469d-902b-2b50f944d5ad"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quantum.googleapis.com"
+    }
+  ]
+}

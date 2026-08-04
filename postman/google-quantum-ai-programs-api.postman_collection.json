@@ -1,0 +1,629 @@
+{
+  "info": {
+    "_postman_id": "b3e5e604-a5b8-407f-a792-74ba2e434ea9",
+    "name": "Google Quantum Engine Calibrations Programs API",
+    "description": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:50:06.000Z",
+    "updatedAt": "2026-07-28T01:50:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3e5e604-a5b8-407f-a792-74ba2e434ea9"
+  },
+  "item": [
+    {
+      "name": "v1alpha1",
+      "item": [
+        {
+          "name": "{parent}",
+          "item": [
+            {
+              "name": "programs",
+              "item": [
+                {
+                  "name": "Create Quantum Program",
+                  "id": "9872769f-e77c-4def-8269-f1a4a7f981bd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/programs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "programs"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b89cd624-0649-4bd9-b864-3fca688cc9af",
+                          "key": "parent",
+                          "value": "projects/R{8?LCf",
+                          "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                        }
+                      ]
+                    },
+                    "description": "Upload a quantum program (a hardware-compatible serialised circuit) to a Google Cloud project."
+                  },
+                  "response": [
+                    {
+                      "id": "3caf7e61-8bc9-4190-a10a-ec2237abffdd",
+                      "name": "Program created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/programs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "programs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                      "createdAt": "2026-07-28T01:50:06.000Z",
+                      "updatedAt": "2026-07-28T01:50:06.000Z",
+                      "uid": "35240-3caf7e61-8bc9-4190-a10a-ec2237abffdd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:06.000Z",
+                  "updatedAt": "2026-07-28T01:50:06.000Z",
+                  "uid": "35240-9872769f-e77c-4def-8269-f1a4a7f981bd"
+                },
+                {
+                  "name": "List Quantum Programs",
+                  "id": "fa1f56cb-0349-4202-8c62-7011baf662f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/programs?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "programs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c23efb45-ef16-4312-876e-ab064424782c",
+                          "key": "parent",
+                          "value": "projects/R{8?LCf",
+                          "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List programs in a project, with optional label, time, and pagination filters."
+                  },
+                  "response": [
+                    {
+                      "id": "0e2661a2-20a2-4c98-a518-e461f66b451a",
+                      "name": "A page of programs.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/programs?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "programs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"programs\": [\n    {\n      \"name\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"updateTime\": \"<dateTime>\",\n      \"labels\": {\n        \"quise63\": \"<string>\"\n      },\n      \"labelFingerprint\": \"<string>\",\n      \"description\": \"<string>\",\n      \"code\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"updateTime\": \"<dateTime>\",\n      \"labels\": {\n        \"sit_10\": \"<string>\",\n        \"officia2\": \"<string>\"\n      },\n      \"labelFingerprint\": \"<string>\",\n      \"description\": \"<string>\",\n      \"code\": {}\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:50:06.000Z",
+                      "updatedAt": "2026-07-28T01:50:06.000Z",
+                      "uid": "35240-0e2661a2-20a2-4c98-a518-e461f66b451a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:06.000Z",
+                  "updatedAt": "2026-07-28T01:50:06.000Z",
+                  "uid": "35240-fa1f56cb-0349-4202-8c62-7011baf662f9"
+                }
+              ],
+              "id": "15be618e-a799-4bcb-a76a-ebed40542112",
+              "createdAt": "2026-07-28T01:50:06.000Z",
+              "updatedAt": "2026-07-28T01:50:06.000Z",
+              "uid": "35240-15be618e-a799-4bcb-a76a-ebed40542112"
+            }
+          ],
+          "id": "46ad4fb6-7ce7-4367-862e-364761862c83",
+          "createdAt": "2026-07-28T01:50:06.000Z",
+          "updatedAt": "2026-07-28T01:50:06.000Z",
+          "uid": "35240-46ad4fb6-7ce7-4367-862e-364761862c83"
+        },
+        {
+          "name": "{name}",
+          "item": [
+            {
+              "name": "Get Quantum Program",
+              "id": "c67a9954-7299-4e4c-a12c-132eb0633660",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1alpha1/:name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1alpha1",
+                    ":name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ec87665c-c712-4eee-9d31-76415be73148",
+                      "key": "name",
+                      "value": "<string>",
+                      "description": "(Required) The program resource name."
+                    }
+                  ]
+                },
+                "description": "Retrieve a single quantum program by resource name."
+              },
+              "response": [
+                {
+                  "id": "1f2d8aef-1cb8-47ba-ba30-b625ab413818",
+                  "name": "The requested program.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                  "createdAt": "2026-07-28T01:50:06.000Z",
+                  "updatedAt": "2026-07-28T01:50:06.000Z",
+                  "uid": "35240-1f2d8aef-1cb8-47ba-ba30-b625ab413818"
+                }
+              ],
+              "createdAt": "2026-07-28T01:50:06.000Z",
+              "updatedAt": "2026-07-28T01:50:06.000Z",
+              "uid": "35240-c67a9954-7299-4e4c-a12c-132eb0633660"
+            },
+            {
+              "name": "Update Quantum Program",
+              "id": "fefc36a4-7180-42b6-946e-29c546deb5ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1alpha1/:name?updateMask=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1alpha1",
+                    ":name"
+                  ],
+                  "query": [
+                    {
+                      "description": "FieldMask listing fields to update.",
+                      "key": "updateMask",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "a14a7a62-fdd3-4980-bc78-22f5c8a7c3c8",
+                      "key": "name",
+                      "value": "<string>",
+                      "description": "(Required) The program resource name."
+                    }
+                  ]
+                },
+                "description": "Update mutable fields (labels, description) on a quantum program."
+              },
+              "response": [
+                {
+                  "id": "9f6e1f8d-8b54-4d44-a40c-b0a045746102",
+                  "name": "Updated program.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name?updateMask=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name"
+                      ],
+                      "query": [
+                        {
+                          "description": "FieldMask listing fields to update.",
+                          "key": "updateMask",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolore_47\": \"<string>\",\n    \"non7\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"code\": {}\n}",
+                  "createdAt": "2026-07-28T01:50:06.000Z",
+                  "updatedAt": "2026-07-28T01:50:06.000Z",
+                  "uid": "35240-9f6e1f8d-8b54-4d44-a40c-b0a045746102"
+                }
+              ],
+              "createdAt": "2026-07-28T01:50:06.000Z",
+              "updatedAt": "2026-07-28T01:50:06.000Z",
+              "uid": "35240-fefc36a4-7180-42b6-946e-29c546deb5ad"
+            },
+            {
+              "name": "Delete Quantum Program",
+              "id": "e5ec89a3-04a9-4f8b-b42d-dce693b15344",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1alpha1/:name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1alpha1",
+                    ":name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dba97291-4f4e-44d8-af5b-a75899133945",
+                      "key": "name",
+                      "value": "<string>",
+                      "description": "(Required) The program resource name."
+                    }
+                  ]
+                },
+                "description": "Delete a quantum program (and cascade-delete its jobs)."
+              },
+              "response": [
+                {
+                  "id": "781cea19-a558-4131-a861-237fed2e0a34",
+                  "name": "Program deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:50:06.000Z",
+                  "updatedAt": "2026-07-28T01:50:06.000Z",
+                  "uid": "35240-781cea19-a558-4131-a861-237fed2e0a34"
+                }
+              ],
+              "createdAt": "2026-07-28T01:50:06.000Z",
+              "updatedAt": "2026-07-28T01:50:06.000Z",
+              "uid": "35240-e5ec89a3-04a9-4f8b-b42d-dce693b15344"
+            }
+          ],
+          "id": "b2a91cb3-9435-49ea-af87-b734b5022736",
+          "createdAt": "2026-07-28T01:50:06.000Z",
+          "updatedAt": "2026-07-28T01:50:06.000Z",
+          "uid": "35240-b2a91cb3-9435-49ea-af87-b734b5022736"
+        }
+      ],
+      "id": "cfa4704f-6f8d-441f-99fe-f2e7fca3bf0e",
+      "createdAt": "2026-07-28T01:50:06.000Z",
+      "updatedAt": "2026-07-28T01:50:06.000Z",
+      "uid": "35240-cfa4704f-6f8d-441f-99fe-f2e7fca3bf0e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quantum.googleapis.com"
+    }
+  ]
+}

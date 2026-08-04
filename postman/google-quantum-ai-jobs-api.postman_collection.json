@@ -1,0 +1,855 @@
+{
+  "info": {
+    "_postman_id": "ae6e50eb-0dfc-4f71-9840-df3390af727a",
+    "name": "Google Quantum Engine Calibrations Jobs API",
+    "description": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:58.000Z",
+    "updatedAt": "2026-07-28T01:49:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae6e50eb-0dfc-4f71-9840-df3390af727a"
+  },
+  "item": [
+    {
+      "name": "v1alpha1",
+      "item": [
+        {
+          "name": "{parent}",
+          "item": [
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "Create Quantum Job",
+                  "id": "9e79befa-02bd-4b87-9695-cd17ed568339",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "jobs"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b4a5e689-f49f-40e0-b22d-f9077a0d9e94",
+                          "key": "parent",
+                          "value": "projects/A/programs/uKy",
+                          "description": "(Required) The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`."
+                        }
+                      ]
+                    },
+                    "description": "Submit a new job to execute a program on a processor or simulator backend."
+                  },
+                  "response": [
+                    {
+                      "id": "47f53bb7-bf52-4ecf-8304-681707b113dc",
+                      "name": "Job created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "jobs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-47f53bb7-bf52-4ecf-8304-681707b113dc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-9e79befa-02bd-4b87-9695-cd17ed568339"
+                },
+                {
+                  "name": "List Quantum Jobs",
+                  "id": "23bf6fd9-3cad-4a98-a025-b48a6220d573",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/jobs?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "be6cd69e-5f69-4ee6-a795-3d6596d6da26",
+                          "key": "parent",
+                          "value": "projects/A/programs/uKy",
+                          "description": "(Required) The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List jobs belonging to a program. Supports filtering by state, label, and creation time."
+                  },
+                  "response": [
+                    {
+                      "id": "d0c65f06-d68c-4680-8d0c-93f13e580c78",
+                      "name": "A page of jobs.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/jobs?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jobs\": [\n    {\n      \"name\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"updateTime\": \"<dateTime>\",\n      \"labels\": {\n        \"anim2b\": \"<string>\",\n        \"deserunt_a48\": \"<string>\",\n        \"ut25b\": \"<string>\"\n      },\n      \"labelFingerprint\": \"<string>\",\n      \"description\": \"<string>\",\n      \"scheduling_config\": {\n        \"processor_selector\": {\n          \"processor_names\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"priority\": \"<integer>\"\n      },\n      \"run_context\": {},\n      \"executionStatus\": {\n        \"state\": \"STATE_UNSPECIFIED\",\n        \"processorName\": \"<string>\",\n        \"failure\": {\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"updateTime\": \"<dateTime>\",\n      \"labels\": {\n        \"est_ea5\": \"<string>\",\n        \"amet93c\": \"<string>\"\n      },\n      \"labelFingerprint\": \"<string>\",\n      \"description\": \"<string>\",\n      \"scheduling_config\": {\n        \"processor_selector\": {\n          \"processor_names\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"priority\": \"<integer>\"\n      },\n      \"run_context\": {},\n      \"executionStatus\": {\n        \"state\": \"SUCCESS\",\n        \"processorName\": \"<string>\",\n        \"failure\": {\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-d0c65f06-d68c-4680-8d0c-93f13e580c78"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-23bf6fd9-3cad-4a98-a025-b48a6220d573"
+                }
+              ],
+              "id": "598735ff-cb59-4afe-b01f-5b7c39d00f67",
+              "createdAt": "2026-07-28T01:49:58.000Z",
+              "updatedAt": "2026-07-28T01:49:58.000Z",
+              "uid": "35240-598735ff-cb59-4afe-b01f-5b7c39d00f67"
+            },
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "List Quantum Job Events",
+                  "id": "5a2647a0-038d-425e-a4a0-c40517080048",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/events?pageSize=<integer>&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0c669554-917d-4dd6-ba36-dbe716841552",
+                          "key": "parent",
+                          "value": "projects/mt.|Ql0;5P/programs/A7/jobs/Kj-7ua",
+                          "description": "(Required) The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List lifecycle events emitted for a job (queued, running, completed, failed)."
+                  },
+                  "response": [
+                    {
+                      "id": "1e1cbdfd-e1e1-47c7-bd67-84a99152cde1",
+                      "name": "A page of job events.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/events?pageSize=<integer>&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "events"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"events\": [\n    {\n      \"eventTime\": \"<dateTime>\",\n      \"executionStatus\": {\n        \"state\": \"RUNNING\",\n        \"processorName\": \"<string>\",\n        \"failure\": {\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"eventTime\": \"<dateTime>\",\n      \"executionStatus\": {\n        \"state\": \"STATE_UNSPECIFIED\",\n        \"processorName\": \"<string>\",\n        \"failure\": {\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-1e1cbdfd-e1e1-47c7-bd67-84a99152cde1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-5a2647a0-038d-425e-a4a0-c40517080048"
+                }
+              ],
+              "id": "3cb39727-33f2-43ca-83f9-13f7a2e40e9e",
+              "createdAt": "2026-07-28T01:49:58.000Z",
+              "updatedAt": "2026-07-28T01:49:58.000Z",
+              "uid": "35240-3cb39727-33f2-43ca-83f9-13f7a2e40e9e"
+            }
+          ],
+          "id": "87d4edc1-fc63-4400-b35e-6e237d4ecd0c",
+          "createdAt": "2026-07-28T01:49:58.000Z",
+          "updatedAt": "2026-07-28T01:49:58.000Z",
+          "uid": "35240-87d4edc1-fc63-4400-b35e-6e237d4ecd0c"
+        },
+        {
+          "name": "{name}",
+          "item": [
+            {
+              "name": "job",
+              "item": [
+                {
+                  "name": "Get Quantum Job",
+                  "id": "2b0dc6d6-417b-4c17-b552-47a0b13c47a0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/job",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "job"
+                      ],
+                      "variable": [
+                        {
+                          "id": "258ad5ab-8c1c-49ea-b874-a9f39b6ea6be",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The job resource name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single quantum job by resource name."
+                  },
+                  "response": [
+                    {
+                      "id": "9fbd0090-4b70-455f-b67f-6471657caaaa",
+                      "name": "The requested job.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/job",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "job"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-9fbd0090-4b70-455f-b67f-6471657caaaa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-2b0dc6d6-417b-4c17-b552-47a0b13c47a0"
+                },
+                {
+                  "name": "Update Quantum Job",
+                  "id": "f4eaf99e-2022-4948-9e52-cefff8a3e546",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/job?updateMask=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "job"
+                      ],
+                      "query": [
+                        {
+                          "description": "FieldMask listing fields to update.",
+                          "key": "updateMask",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e4e9d6ed-202e-49cc-83ed-bde0b72fbae2",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The job resource name."
+                        }
+                      ]
+                    },
+                    "description": "Update mutable fields (labels, description, priority) on a job."
+                  },
+                  "response": [
+                    {
+                      "id": "4f2e6e7e-7ae9-47cd-8a92-2a0a1d36325b",
+                      "name": "Updated job.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/job?updateMask=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "job"
+                          ],
+                          "query": [
+                            {
+                              "description": "FieldMask listing fields to update.",
+                              "key": "updateMask",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"labels\": {\n    \"dolor__b\": \"<string>\",\n    \"occaecat_0ea\": \"<string>\"\n  },\n  \"labelFingerprint\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduling_config\": {\n    \"processor_selector\": {\n      \"processor_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"priority\": \"<integer>\"\n  },\n  \"run_context\": {},\n  \"executionStatus\": {\n    \"state\": \"SUCCESS\",\n    \"processorName\": \"<string>\",\n    \"failure\": {\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-4f2e6e7e-7ae9-47cd-8a92-2a0a1d36325b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-f4eaf99e-2022-4948-9e52-cefff8a3e546"
+                },
+                {
+                  "name": "Delete Quantum Job",
+                  "id": "47f7c150-11c7-4ccd-9362-8de3f3514057",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/job",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "job"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c8cc8555-77a8-49ff-a0b3-7ca0f1238c82",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The job resource name."
+                        }
+                      ]
+                    },
+                    "description": "Delete a quantum job and its results."
+                  },
+                  "response": [
+                    {
+                      "id": "d9180672-696c-43bd-8abd-12ef2c315e41",
+                      "name": "Job deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/job",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "job"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:49:58.000Z",
+                      "updatedAt": "2026-07-28T01:49:58.000Z",
+                      "uid": "35240-d9180672-696c-43bd-8abd-12ef2c315e41"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-47f7c150-11c7-4ccd-9362-8de3f3514057"
+                }
+              ],
+              "id": "4b7eae24-1a93-40e3-baa2-71fe304e0a57",
+              "createdAt": "2026-07-28T01:49:58.000Z",
+              "updatedAt": "2026-07-28T01:49:58.000Z",
+              "uid": "35240-4b7eae24-1a93-40e3-baa2-71fe304e0a57"
+            }
+          ],
+          "id": "42910fbc-d291-4e57-8598-989ceccef2b2",
+          "createdAt": "2026-07-28T01:49:58.000Z",
+          "updatedAt": "2026-07-28T01:49:58.000Z",
+          "uid": "35240-42910fbc-d291-4e57-8598-989ceccef2b2"
+        },
+        {
+          "name": "{name}:cancel",
+          "item": [
+            {
+              "name": "Cancel Quantum Job",
+              "id": "5fd0b8a4-ada9-4d18-9223-8079f8f07a27",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1alpha1/{{name}}:cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1alpha1",
+                    "{{name}}:cancel"
+                  ]
+                },
+                "description": "Cancel a queued or running quantum job."
+              },
+              "response": [
+                {
+                  "id": "38959682-563a-4af3-8438-ad54be6a798d",
+                  "name": "Job cancellation accepted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/{{name}}:cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        "{{name}}:cancel"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:49:58.000Z",
+                  "updatedAt": "2026-07-28T01:49:58.000Z",
+                  "uid": "35240-38959682-563a-4af3-8438-ad54be6a798d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:49:58.000Z",
+              "updatedAt": "2026-07-28T01:49:58.000Z",
+              "uid": "35240-5fd0b8a4-ada9-4d18-9223-8079f8f07a27"
+            }
+          ],
+          "id": "721cf992-e4fa-438e-9b61-cd22ed0ef057",
+          "createdAt": "2026-07-28T01:49:58.000Z",
+          "updatedAt": "2026-07-28T01:49:58.000Z",
+          "uid": "35240-721cf992-e4fa-438e-9b61-cd22ed0ef057"
+        }
+      ],
+      "id": "298dbd7a-3555-4951-b2ad-b6eab2c3a4c7",
+      "createdAt": "2026-07-28T01:49:58.000Z",
+      "updatedAt": "2026-07-28T01:49:58.000Z",
+      "uid": "35240-298dbd7a-3555-4951-b2ad-b6eab2c3a4c7"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quantum.googleapis.com"
+    },
+    {
+      "key": "name",
+      "value": "<string>"
+    }
+  ]
+}

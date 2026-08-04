@@ -1,0 +1,1238 @@
+{
+  "info": {
+    "_postman_id": "ef66e547-07e5-4d1e-8b3d-f2002e0b301e",
+    "name": "Google Quantum Engine Calibrations Reservations API",
+    "description": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:50:15.000Z",
+    "updatedAt": "2026-07-28T01:50:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef66e547-07e5-4d1e-8b3d-f2002e0b301e"
+  },
+  "item": [
+    {
+      "name": "v1alpha1",
+      "item": [
+        {
+          "name": "{parent}",
+          "item": [
+            {
+              "name": "reservations",
+              "item": [
+                {
+                  "name": "Create Quantum Reservation",
+                  "id": "6c9b1ef7-7e9d-42d6-acf6-8f7c37d2585d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/reservations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "reservations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "31614a5a-fb58-4674-be4a-0b59a0274041",
+                          "key": "parent",
+                          "value": "projects/2>IW!ZC2</processors/8<RkDf5M",
+                          "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                        }
+                      ]
+                    },
+                    "description": "Reserve a future time window on a quantum processor."
+                  },
+                  "response": [
+                    {
+                      "id": "f687a633-37e2-4fdb-a839-bc41dd59c62a",
+                      "name": "Reservation created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/reservations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "reservations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-f687a633-37e2-4fdb-a839-bc41dd59c62a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-6c9b1ef7-7e9d-42d6-acf6-8f7c37d2585d"
+                },
+                {
+                  "name": "List Quantum Reservations",
+                  "id": "a6c7c7aa-d75e-491f-9f20-0268269b2e64",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/reservations?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "reservations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "222d3b2f-2f68-4d57-861a-650ea00a2295",
+                          "key": "parent",
+                          "value": "projects/2>IW!ZC2</processors/8<RkDf5M",
+                          "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List reservations on a processor."
+                  },
+                  "response": [
+                    {
+                      "id": "c1b47c7b-26a2-48b4-b4cc-1227d9ca2760",
+                      "name": "A page of reservations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/reservations?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "reservations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reservations\": [\n    {\n      \"name\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"whitelistedUsers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"whitelistedUsers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-c1b47c7b-26a2-48b4-b4cc-1227d9ca2760"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-a6c7c7aa-d75e-491f-9f20-0268269b2e64"
+                }
+              ],
+              "id": "2d03a920-b6fd-42a3-bd38-859a0408ef2b",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-2d03a920-b6fd-42a3-bd38-859a0408ef2b"
+            },
+            {
+              "name": "timeSlots",
+              "item": [
+                {
+                  "name": "List Quantum Time Slots",
+                  "id": "2bc41fb0-f0e6-4383-a6f6-735ddf4a85d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/timeSlots?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "timeSlots"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a156e6d1-f45f-4e11-a5d6-a71968f1b6f9",
+                          "key": "parent",
+                          "value": "projects/2>IW!ZC2</processors/8<RkDf5M",
+                          "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List the OPEN_SWIM / MAINTENANCE / RESERVATION / UNALLOCATED time slots for a processor."
+                  },
+                  "response": [
+                    {
+                      "id": "6147a751-dce7-46be-b548-b66eecf97f5e",
+                      "name": "A page of time slots.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/timeSlots?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "timeSlots"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timeSlots\": [\n    {\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"slotType\": \"MAINTENANCE\"\n    },\n    {\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"slotType\": \"OPEN_SWIM\"\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-6147a751-dce7-46be-b548-b66eecf97f5e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-2bc41fb0-f0e6-4383-a6f6-735ddf4a85d8"
+                }
+              ],
+              "id": "4e479d21-97f2-4acb-a685-d3d2278f4a71",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-4e479d21-97f2-4acb-a685-d3d2278f4a71"
+            },
+            {
+              "name": "reservationBudgets",
+              "item": [
+                {
+                  "name": "List Quantum Reservation Budgets",
+                  "id": "2de89d51-4ccb-43f8-a492-0b333a2f0510",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/reservationBudgets?pageSize=<integer>&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "reservationBudgets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9bb0701-254a-4872-ae97-8825558e3ee0",
+                          "key": "parent",
+                          "value": "projects/iaZ-QiM8+|",
+                          "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List the reservation budgets allocated to a project."
+                  },
+                  "response": [
+                    {
+                      "id": "ff89de80-b452-4f5f-ac41-50f421695cce",
+                      "name": "A page of reservation budgets.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/reservationBudgets?pageSize=<integer>&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "reservationBudgets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reservationBudgets\": [\n    {\n      \"name\": \"<string>\",\n      \"grantedDuration\": \"<string>\",\n      \"availableDuration\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"grantedDuration\": \"<string>\",\n      \"availableDuration\": \"<string>\"\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-ff89de80-b452-4f5f-ac41-50f421695cce"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-2de89d51-4ccb-43f8-a492-0b333a2f0510"
+                }
+              ],
+              "id": "cd86081e-17a6-4274-b64e-e10eed39e31b",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-cd86081e-17a6-4274-b64e-e10eed39e31b"
+            },
+            {
+              "name": "reservationGrant",
+              "item": [
+                {
+                  "name": "List Quantum Reservation Grants",
+                  "id": "774baa04-c9a8-4be1-bd77-50cfd704a818",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/reservationGrant?pageSize=<integer>&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "reservationGrant"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "03c9a7d6-0a1a-4e98-a69a-0925ce8c0e2d",
+                          "key": "parent",
+                          "value": "projects/iaZ-QiM8+|",
+                          "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List the reservation grants (sponsorship records) available to a project."
+                  },
+                  "response": [
+                    {
+                      "id": "7780940a-4d1e-4af7-b82a-17d167e4e8ca",
+                      "name": "A page of reservation grants.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/reservationGrant?pageSize=<integer>&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "reservationGrant"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reservationGrants\": [\n    {\n      \"name\": \"<string>\",\n      \"grantedDuration\": \"<string>\",\n      \"consumedDuration\": \"<string>\",\n      \"whitelistedProjects\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"grantedDuration\": \"<string>\",\n      \"consumedDuration\": \"<string>\",\n      \"whitelistedProjects\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-7780940a-4d1e-4af7-b82a-17d167e4e8ca"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-774baa04-c9a8-4be1-bd77-50cfd704a818"
+                }
+              ],
+              "id": "e5aa2846-f84c-4889-a27b-be73bcd0b230",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-e5aa2846-f84c-4889-a27b-be73bcd0b230"
+            }
+          ],
+          "id": "f5c60798-5ff2-44d1-93bf-3d2f496cc8cb",
+          "createdAt": "2026-07-28T01:50:16.000Z",
+          "updatedAt": "2026-07-28T01:50:16.000Z",
+          "uid": "35240-f5c60798-5ff2-44d1-93bf-3d2f496cc8cb"
+        },
+        {
+          "name": "{name}",
+          "item": [
+            {
+              "name": "reservation",
+              "item": [
+                {
+                  "name": "Get Quantum Reservation",
+                  "id": "2f78698c-aa85-487e-a5e0-2534577a8f27",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/reservation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "reservation"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4482e292-5f8c-4bd3-9de2-8203c453da31",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The reservation resource name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single processor reservation."
+                  },
+                  "response": [
+                    {
+                      "id": "9b983483-68ff-4b51-9d99-2f75bd7dfd52",
+                      "name": "The requested reservation.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/reservation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "reservation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-9b983483-68ff-4b51-9d99-2f75bd7dfd52"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-2f78698c-aa85-487e-a5e0-2534577a8f27"
+                },
+                {
+                  "name": "Update Quantum Reservation",
+                  "id": "1e8f6fa7-5479-4e41-9acc-c8939da0a74b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/reservation?updateMask=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "reservation"
+                      ],
+                      "query": [
+                        {
+                          "description": "FieldMask listing fields to update.",
+                          "key": "updateMask",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba98a2f8-72fc-436e-baa4-c2be6eb07deb",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The reservation resource name."
+                        }
+                      ]
+                    },
+                    "description": "Update a reservation's window or whitelisted users."
+                  },
+                  "response": [
+                    {
+                      "id": "3b2160fa-1df5-418f-8b31-79647365509e",
+                      "name": "Updated reservation.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/reservation?updateMask=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "reservation"
+                          ],
+                          "query": [
+                            {
+                              "description": "FieldMask listing fields to update.",
+                              "key": "updateMask",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"whitelistedUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-3b2160fa-1df5-418f-8b31-79647365509e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-1e8f6fa7-5479-4e41-9acc-c8939da0a74b"
+                },
+                {
+                  "name": "Delete Quantum Reservation",
+                  "id": "ecee004c-3054-4844-9dd8-6167034816ab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/reservation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "reservation"
+                      ],
+                      "variable": [
+                        {
+                          "id": "76bcbca8-7763-42a4-b4f8-4fbf3c30791b",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The reservation resource name."
+                        }
+                      ]
+                    },
+                    "description": "Delete an upcoming reservation."
+                  },
+                  "response": [
+                    {
+                      "id": "203aa636-894c-49e5-8989-0f4fa07d7dc3",
+                      "name": "Reservation deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/reservation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "reservation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-203aa636-894c-49e5-8989-0f4fa07d7dc3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-ecee004c-3054-4844-9dd8-6167034816ab"
+                }
+              ],
+              "id": "fea51842-1f71-4874-92c2-5ce3f70b37dd",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-fea51842-1f71-4874-92c2-5ce3f70b37dd"
+            },
+            {
+              "name": "reservation:cancel",
+              "item": [
+                {
+                  "name": "Cancel Quantum Reservation",
+                  "id": "cb50777d-33ef-423b-896b-966ce16f2c27",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/reservation:cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "reservation:cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3061b56-d114-4d69-9db9-0de0bdc29f14",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The reservation resource name."
+                        }
+                      ]
+                    },
+                    "description": "Cancel an in-progress reservation, freeing its remaining time."
+                  },
+                  "response": [
+                    {
+                      "id": "e5e1d94b-8971-4f46-8323-f4159f674dd2",
+                      "name": "Reservation cancellation accepted.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/reservation:cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "reservation:cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:50:16.000Z",
+                      "updatedAt": "2026-07-28T01:50:16.000Z",
+                      "uid": "35240-e5e1d94b-8971-4f46-8323-f4159f674dd2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-cb50777d-33ef-423b-896b-966ce16f2c27"
+                }
+              ],
+              "id": "d53e3899-32fc-4dc4-8b2f-7e631877a715",
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-d53e3899-32fc-4dc4-8b2f-7e631877a715"
+            }
+          ],
+          "id": "f9fede0b-7150-4975-a166-ad8faf1704c3",
+          "createdAt": "2026-07-28T01:50:16.000Z",
+          "updatedAt": "2026-07-28T01:50:16.000Z",
+          "uid": "35240-f9fede0b-7150-4975-a166-ad8faf1704c3"
+        },
+        {
+          "name": "{name}:reallocate",
+          "item": [
+            {
+              "name": "Reallocate Quantum Reservation Grant",
+              "id": "712d293f-e3cf-4afd-95ea-524aabbf577b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"duration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1alpha1/{{name}}:reallocate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1alpha1",
+                    "{{name}}:reallocate"
+                  ]
+                },
+                "description": "Move budget between projects sharing a reservation grant."
+              },
+              "response": [
+                {
+                  "id": "5caf63e8-869c-4e01-96c5-d7fef7f73041",
+                  "name": "Grant reallocated.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<string>\",\n  \"duration\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/{{name}}:reallocate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        "{{name}}:reallocate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"grantedDuration\": \"<string>\",\n  \"consumedDuration\": \"<string>\",\n  \"whitelistedProjects\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:50:16.000Z",
+                  "updatedAt": "2026-07-28T01:50:16.000Z",
+                  "uid": "35240-5caf63e8-869c-4e01-96c5-d7fef7f73041"
+                }
+              ],
+              "createdAt": "2026-07-28T01:50:16.000Z",
+              "updatedAt": "2026-07-28T01:50:16.000Z",
+              "uid": "35240-712d293f-e3cf-4afd-95ea-524aabbf577b"
+            }
+          ],
+          "id": "f2c5f5b6-f57e-439d-8216-d3e1733524cb",
+          "createdAt": "2026-07-28T01:50:16.000Z",
+          "updatedAt": "2026-07-28T01:50:16.000Z",
+          "uid": "35240-f2c5f5b6-f57e-439d-8216-d3e1733524cb"
+        }
+      ],
+      "id": "4fda1917-3b32-49a7-8944-296be9200d06",
+      "createdAt": "2026-07-28T01:50:16.000Z",
+      "updatedAt": "2026-07-28T01:50:16.000Z",
+      "uid": "35240-4fda1917-3b32-49a7-8944-296be9200d06"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quantum.googleapis.com"
+    },
+    {
+      "key": "name",
+      "value": "<string>"
+    }
+  ]
+}

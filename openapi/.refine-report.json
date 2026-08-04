@@ -1,0 +1,24 @@
+{
+  "provider": "google-quantum-ai",
+  "sources": [
+    "google-quantum-ai-calibrations-api-openapi.yml",
+    "google-quantum-ai-jobs-api-openapi.yml",
+    "google-quantum-ai-processors-api-openapi.yml",
+    "google-quantum-ai-programs-api-openapi.yml",
+    "google-quantum-ai-reservations-api-openapi.yml",
+    "google-quantum-ai-results-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-quantum-ai-calibrations-api-openapi.yml",
+    "google-quantum-ai-jobs-api-openapi.yml",
+    "google-quantum-ai-processors-api-openapi.yml",
+    "google-quantum-ai-programs-api-openapi.yml",
+    "google-quantum-ai-reservations-api-openapi.yml",
+    "google-quantum-ai-results-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

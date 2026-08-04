@@ -1,0 +1,304 @@
+{
+  "info": {
+    "_postman_id": "86e1a0c8-55fe-41d6-81b7-8e0c93044409",
+    "name": "Google Quantum Engine Calibrations API",
+    "description": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:57.000Z",
+    "updatedAt": "2026-07-28T01:49:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-86e1a0c8-55fe-41d6-81b7-8e0c93044409"
+  },
+  "item": [
+    {
+      "name": "v1alpha1",
+      "item": [
+        {
+          "name": "{parent}",
+          "item": [
+            {
+              "name": "calibrations",
+              "item": [
+                {
+                  "name": "List Quantum Calibrations",
+                  "id": "39f47404-de2a-4e27-8c44-1d7e8b02b600",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:parent/calibrations?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":parent",
+                        "calibrations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return in a page.",
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Continuation token from a previous list response.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "16c527e7-ba1d-4e08-acc0-ecb8f9c35d35",
+                          "key": "parent",
+                          "value": "projects/p#n80jM/processors/q",
+                          "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                        }
+                      ]
+                    },
+                    "description": "List historical calibration snapshots for a processor."
+                  },
+                  "response": [
+                    {
+                      "id": "415b93d6-2869-4271-80fe-d2251656d9cd",
+                      "name": "A page of calibrations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:parent/calibrations?pageSize=<integer>&pageToken=<string>&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":parent",
+                            "calibrations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return in a page.",
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Continuation token from a previous list response.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parent"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"calibrations\": [\n    {\n      \"name\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"data\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"data\": {}\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:49:57.000Z",
+                      "updatedAt": "2026-07-28T01:49:57.000Z",
+                      "uid": "35240-415b93d6-2869-4271-80fe-d2251656d9cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:57.000Z",
+                  "updatedAt": "2026-07-28T01:49:57.000Z",
+                  "uid": "35240-39f47404-de2a-4e27-8c44-1d7e8b02b600"
+                }
+              ],
+              "id": "9ca926b1-b5ce-448e-8dfd-706cfce2871b",
+              "createdAt": "2026-07-28T01:49:57.000Z",
+              "updatedAt": "2026-07-28T01:49:57.000Z",
+              "uid": "35240-9ca926b1-b5ce-448e-8dfd-706cfce2871b"
+            }
+          ],
+          "id": "3da5c60f-d311-40d8-9947-91ee43a0c92d",
+          "createdAt": "2026-07-28T01:49:57.000Z",
+          "updatedAt": "2026-07-28T01:49:57.000Z",
+          "uid": "35240-3da5c60f-d311-40d8-9947-91ee43a0c92d"
+        },
+        {
+          "name": "{name}",
+          "item": [
+            {
+              "name": "calibration",
+              "item": [
+                {
+                  "name": "Get Quantum Calibration",
+                  "id": "b500954e-c771-44d9-9c06-81d855d22e42",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1alpha1/:name/calibration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1alpha1",
+                        ":name",
+                        "calibration"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9bf19c00-6c63-4115-a617-739d85daa586",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The calibration resource name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single calibration snapshot for a processor."
+                  },
+                  "response": [
+                    {
+                      "id": "1e17963e-2ef1-4063-abd4-01a1f1a38102",
+                      "name": "The requested calibration.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1alpha1/:name/calibration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1alpha1",
+                            ":name",
+                            "calibration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:49:57.000Z",
+                      "updatedAt": "2026-07-28T01:49:57.000Z",
+                      "uid": "35240-1e17963e-2ef1-4063-abd4-01a1f1a38102"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:49:57.000Z",
+                  "updatedAt": "2026-07-28T01:49:57.000Z",
+                  "uid": "35240-b500954e-c771-44d9-9c06-81d855d22e42"
+                }
+              ],
+              "id": "dc130ba3-6616-4dc2-ace1-43fd58cf1779",
+              "createdAt": "2026-07-28T01:49:57.000Z",
+              "updatedAt": "2026-07-28T01:49:57.000Z",
+              "uid": "35240-dc130ba3-6616-4dc2-ace1-43fd58cf1779"
+            }
+          ],
+          "id": "c89b219b-4076-4396-97ec-bacaa4d52b8f",
+          "createdAt": "2026-07-28T01:49:57.000Z",
+          "updatedAt": "2026-07-28T01:49:57.000Z",
+          "uid": "35240-c89b219b-4076-4396-97ec-bacaa4d52b8f"
+        }
+      ],
+      "id": "b8002670-cfd3-45b9-86f9-9174c7684289",
+      "createdAt": "2026-07-28T01:49:57.000Z",
+      "updatedAt": "2026-07-28T01:49:57.000Z",
+      "uid": "35240-b8002670-cfd3-45b9-86f9-9174c7684289"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quantum.googleapis.com"
+    }
+  ]
+}
