@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "38f9b41d-8388-4821-9628-ef66c275d71e",
+      "name": "Calibrations",
+      "description": {
+        "content": "Periodic device performance snapshots.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24cc3e23-f552-4c90-b8de-edeb15f0fcc0",
+          "name": "List Quantum Calibrations",
+          "request": {
+            "name": "List Quantum Calibrations",
+            "description": {
+              "content": "List historical calibration snapshots for a processor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha1",
+                ":parent",
+                "calibrations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return in a page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Continuation token from a previous list response."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f09f898f-1a2a-4e60-a617-0da3ab3f8450",
+              "name": "A page of calibrations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha1",
+                    ":parent",
+                    "calibrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"calibrations\": [\n    {\n      \"name\": \"string\",\n      \"timestamp\": \"2020-01-23T21:57:55.179Z\",\n      \"data\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"timestamp\": \"2026-05-21T05:39:21.685Z\",\n      \"data\": {}\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03e68bd2-2d6a-4e79-8970-d21bb7b4627f",
+          "name": "Get Quantum Calibration",
+          "request": {
+            "name": "Get Quantum Calibration",
+            "description": {
+              "content": "Retrieve a single calibration snapshot for a processor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha1",
+                ":name",
+                "calibration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The calibration resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea20d482-164f-481d-b84e-43b986733e0f",
+              "name": "The requested calibration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha1",
+                    ":name",
+                    "calibration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The calibration resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"timestamp\": \"1979-11-26T19:35:34.877Z\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quantum.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "76315eab-5e16-4149-b71b-7c727082374f",
+    "name": "Google Quantum Engine Calibrations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+      "type": "text/plain"
+    }
+  }
+}

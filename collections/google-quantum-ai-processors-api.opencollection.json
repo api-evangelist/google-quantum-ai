@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Quantum Engine Calibrations Processors API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Processors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quantum Processors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/processors",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent project resource, formatted as `projects/{project_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+              }
+            ]
+          },
+          "docs": "List processors visible to the Google Cloud project."
+        },
+        {
+          "info": {
+            "name": "Get Quantum Processor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/processor",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The processor resource name."
+              }
+            ]
+          },
+          "docs": "Retrieve a single quantum processor and its current device specification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

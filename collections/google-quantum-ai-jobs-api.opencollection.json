@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Quantum Engine Calibrations Jobs API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quantum Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/jobs",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+              }
+            ]
+          },
+          "docs": "List jobs belonging to a program. Supports filtering by state, label, and creation time."
+        },
+        {
+          "info": {
+            "name": "Create Quantum Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/jobs",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new job to execute a program on a processor or simulator backend."
+        },
+        {
+          "info": {
+            "name": "Get Quantum Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/job",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The job resource name."
+              }
+            ]
+          },
+          "docs": "Retrieve a single quantum job by resource name."
+        },
+        {
+          "info": {
+            "name": "Update Quantum Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/job",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The job resource name."
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "FieldMask listing fields to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable fields (labels, description, priority) on a job."
+        },
+        {
+          "info": {
+            "name": "Delete Quantum Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/job",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The job resource name."
+              }
+            ]
+          },
+          "docs": "Delete a quantum job and its results."
+        },
+        {
+          "info": {
+            "name": "Cancel Quantum Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name:cancel",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The job resource name."
+              }
+            ]
+          },
+          "docs": "Cancel a queued or running quantum job."
+        },
+        {
+          "info": {
+            "name": "List Quantum Job Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/events",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              }
+            ]
+          },
+          "docs": "List lifecycle events emitted for a job (queued, running, completed, failed)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

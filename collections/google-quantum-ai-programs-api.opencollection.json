@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Quantum Engine Calibrations Programs API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Programs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quantum Programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/programs",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent project resource, formatted as `projects/{project_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+              }
+            ]
+          },
+          "docs": "List programs in a project, with optional label, time, and pagination filters."
+        },
+        {
+          "info": {
+            "name": "Create Quantum Program",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/programs",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent project resource, formatted as `projects/{project_id}`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a quantum program (a hardware-compatible serialised circuit) to a Google Cloud project."
+        },
+        {
+          "info": {
+            "name": "Get Quantum Program",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The program resource name."
+              }
+            ]
+          },
+          "docs": "Retrieve a single quantum program by resource name."
+        },
+        {
+          "info": {
+            "name": "Update Quantum Program",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The program resource name."
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "FieldMask listing fields to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable fields (labels, description) on a quantum program."
+        },
+        {
+          "info": {
+            "name": "Delete Quantum Program",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The program resource name."
+              }
+            ]
+          },
+          "docs": "Delete a quantum program (and cascade-delete its jobs)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

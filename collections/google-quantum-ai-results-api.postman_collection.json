@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "4149a7bc-5654-43d0-873b-47898dd2380f",
+      "name": "Results",
+      "description": {
+        "content": "Measurement results returned by completed jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e1805ffd-e3d1-46b3-89a4-7ea72f9cd130",
+          "name": "Get Quantum Result",
+          "request": {
+            "name": "Get Quantum Result",
+            "description": {
+              "content": "Retrieve the serialised measurement result of a completed quantum job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha1",
+                ":parent",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "165d4091-dbf6-4ea9-af00-61762de88303",
+              "name": "Job result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha1",
+                    ":parent",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parent\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quantum.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e2a0bb3b-261e-491f-9e57-0ab400cdd55e",
+    "name": "Google Quantum Engine Calibrations Results API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+      "type": "text/plain"
+    }
+  }
+}

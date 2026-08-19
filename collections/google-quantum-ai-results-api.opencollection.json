@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Quantum Engine Calibrations Results API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Quantum Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/result",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`."
+              }
+            ]
+          },
+          "docs": "Retrieve the serialised measurement result of a completed quantum job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

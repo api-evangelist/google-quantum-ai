@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "42c0e1ea-7c1d-4cd4-bc2d-35b8d227ecd7",
+      "name": "Processors",
+      "description": {
+        "content": "Quantum processing units (Willow, Sycamore-class) available to the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92320b36-f8b6-4547-adb4-887d7d2b0595",
+          "name": "List Quantum Processors",
+          "request": {
+            "name": "List Quantum Processors",
+            "description": {
+              "content": "List processors visible to the Google Cloud project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha1",
+                ":parent",
+                "processors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return in a page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Continuation token from a previous list response."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parent",
+                  "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30ab1329-4dae-4af8-91d3-c9eb8377cf50",
+              "name": "A page of processors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha1",
+                    ":parent",
+                    "processors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parent",
+                      "description": "(Required) The parent project resource, formatted as `projects/{project_id}`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"processors\": [\n    {\n      \"name\": \"string\",\n      \"health\": \"HEALTH_UNSPECIFIED\",\n      \"expectedDownTime\": \"1957-01-09T09:58:02.170Z\",\n      \"expectedRecoveryTime\": \"2023-05-08T20:01:38.148Z\",\n      \"supportedDeviceTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"deviceSpec\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"health\": \"HEALTH_UNSPECIFIED\",\n      \"expectedDownTime\": \"1977-08-13T21:30:44.444Z\",\n      \"expectedRecoveryTime\": \"2024-02-16T15:17:09.524Z\",\n      \"supportedDeviceTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"deviceSpec\": {}\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5eb72d9-5d48-4817-8f49-e9d316026819",
+          "name": "Get Quantum Processor",
+          "request": {
+            "name": "Get Quantum Processor",
+            "description": {
+              "content": "Retrieve a single quantum processor and its current device specification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha1",
+                ":name",
+                "processor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The processor resource name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef72862c-2922-4429-920d-b20356f759ed",
+              "name": "The requested processor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha1",
+                    ":name",
+                    "processor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The processor resource name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"health\": \"OK\",\n  \"expectedDownTime\": \"1990-08-08T14:53:18.507Z\",\n  \"expectedRecoveryTime\": \"1965-01-18T18:44:39.128Z\",\n  \"supportedDeviceTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deviceSpec\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quantum.googleapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4de8a80-a04a-4b05-98f8-affea1be609a",
+    "name": "Google Quantum Engine Calibrations Processors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,\n`google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine\naccepts hardware-compatible quantum circuits as **programs**, executes them\nas **jobs** on Google's superconducting **processors** (Willow- and\nSycamore-class), manages **reservations** of processor time, and exposes\nprocessor **calibration** snapshots. The canonical client is the\n`cirq-google` Python package (`cirq_google.Engine`).\n\nAccess is restricted: callers must use a Google Cloud project with the\nQuantum Engine API enabled, be on the approved-user list, and authenticate\nusing Application Default Credentials (OAuth 2.0 with the\n`https://www.googleapis.com/auth/cloud-platform` scope).\n\n\nContact Support:\n Name: Cirq Maintainers\n Email: cirq-maintainers@googlegroups.com",
+      "type": "text/plain"
+    }
+  }
+}

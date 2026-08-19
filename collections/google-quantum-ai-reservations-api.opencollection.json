@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Quantum Engine Calibrations Reservations API",
+    "version": "v1alpha1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quantum Reservations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/reservations",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+              }
+            ]
+          },
+          "docs": "List reservations on a processor."
+        },
+        {
+          "info": {
+            "name": "Create Quantum Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/reservations",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reserve a future time window on a quantum processor."
+        },
+        {
+          "info": {
+            "name": "Get Quantum Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/reservation",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The reservation resource name."
+              }
+            ]
+          },
+          "docs": "Retrieve a single processor reservation."
+        },
+        {
+          "info": {
+            "name": "Update Quantum Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/reservation",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The reservation resource name."
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "FieldMask listing fields to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a reservation's window or whitelisted users."
+        },
+        {
+          "info": {
+            "name": "Delete Quantum Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/reservation",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The reservation resource name."
+              }
+            ]
+          },
+          "docs": "Delete an upcoming reservation."
+        },
+        {
+          "info": {
+            "name": "Cancel Quantum Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name/reservation:cancel",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The reservation resource name."
+              }
+            ]
+          },
+          "docs": "Cancel an in-progress reservation, freeing its remaining time."
+        },
+        {
+          "info": {
+            "name": "List Quantum Time Slots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/timeSlots",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`)."
+              }
+            ]
+          },
+          "docs": "List the OPEN_SWIM / MAINTENANCE / RESERVATION / UNALLOCATED time slots for a processor."
+        },
+        {
+          "info": {
+            "name": "List Quantum Reservation Budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/reservationBudgets",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent project resource, formatted as `projects/{project_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              }
+            ]
+          },
+          "docs": "List the reservation budgets allocated to a project."
+        },
+        {
+          "info": {
+            "name": "List Quantum Reservation Grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quantum.googleapis.com/v1alpha1/:parent/reservationGrant",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "The parent project resource, formatted as `projects/{project_id}`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return in a page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Continuation token from a previous list response."
+              }
+            ]
+          },
+          "docs": "List the reservation grants (sponsorship records) available to a project."
+        },
+        {
+          "info": {
+            "name": "Reallocate Quantum Reservation Grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quantum.googleapis.com/v1alpha1/:name:reallocate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The reservation grant resource name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move budget between projects sharing a reservation grant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
