@@ -8,6 +8,12 @@ apis:
   - SDK
   - Python
   - NISQ
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - SDK
+  - Python
+  - NISQ
   - Open Source
   humanURL: https://quantumai.google/cirq
   properties:
@@ -33,6 +39,11 @@ apis:
   - Quantum Computing
   - Simulation
   - Performance
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - Simulation
+  - Performance
   - Open Source
   humanURL: https://quantumai.google/qsim
   properties:
@@ -49,6 +60,11 @@ apis:
 - aid: google-quantum-ai:openfermion
   name: OpenFermion
   tags:
+  - Quantum Computing
+  - Chemistry
+  - Materials Science
+  - Open-Source
+  tags_raw:
   - Quantum Computing
   - Chemistry
   - Materials Science
@@ -72,6 +88,11 @@ apis:
   - Quantum Computing
   - Error Correction
   - Stabilizer
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - Error Correction
+  - Stabilizer
   - Open Source
   humanURL: https://github.com/quantumlib/Stim
   properties:
@@ -89,6 +110,11 @@ apis:
   - Quantum Computing
   - Algorithms
   - Resource Estimation
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - Algorithms
+  - Resource Estimation
   - Open Source
   humanURL: https://github.com/quantumlib/qualtran
   properties:
@@ -103,6 +129,11 @@ apis:
 - aid: google-quantum-ai:tensorflow-quantum
   name: TensorFlow Quantum
   tags:
+  - Quantum Computing
+  - Machine-Learning
+  - Hybrid
+  - Open-Source
+  tags_raw:
   - Quantum Computing
   - Machine Learning
   - Hybrid
@@ -125,6 +156,11 @@ apis:
   - Quantum Computing
   - Research
   - Experiments
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - Research
+  - Experiments
   - Open Source
   humanURL: https://github.com/quantumlib/ReCirq
   properties:
@@ -140,6 +176,11 @@ apis:
   - Quantum Computing
   - Error Correction
   - Decoder
+  - Open-Source
+  tags_raw:
+  - Quantum Computing
+  - Error Correction
+  - Decoder
   - Open Source
   humanURL: https://github.com/quantumlib/tesseract-decoder
   properties:
@@ -151,6 +192,11 @@ apis:
 - aid: google-quantum-ai:unitary
   name: Unitary
   tags:
+  - Quantum Computing
+  - Games
+  - Education
+  - Open-Source
+  tags_raw:
   - Quantum Computing
   - Games
   - Education
@@ -192,6 +238,8 @@ apis:
   humanURL: https://quantumai.google/cirq/google/engine
   baseURL: https://quantum.googleapis.com
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
