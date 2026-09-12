@@ -398,6 +398,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-quantum-ai.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.quantumai.google/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/google-quantum-ai/overview
   - type: AgenticAccess
