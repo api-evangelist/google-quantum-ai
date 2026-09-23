@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Google Quantum Engine Calibrations Jobs API
+  title: Google Quantum Engine Jobs API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com
@@ -168,7 +147,93 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListQuantumJobEventsResponse'
 components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    JobName:
+      name: name
+      in: path
+      required: true
+      description: The job resource name.
+      schema:
+        type: string
+    JobParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
+    ParentProgram:
+      name: parent
+      in: path
+      required: true
+      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
   schemas:
+    ExecutionStatus:
+      type: object
+      description: Current state of a quantum job.
+      properties:
+        state:
+          type: string
+          enum:
+          - STATE_UNSPECIFIED
+          - READY
+          - RUNNING
+          - CANCELLING
+          - CANCELLED
+          - SUCCESS
+          - FAILURE
+        processorName:
+          type: string
+        failure:
+          type: object
+          properties:
+            errorCode:
+              type: string
+            errorMessage:
+              type: string
+    ListQuantumJobsResponse:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumJob'
+        nextPageToken:
+          type: string
+    Empty:
+      type: object
+      description: An empty response body.
     ListQuantumJobEventsResponse:
       type: object
       properties:
@@ -198,32 +263,6 @@ components:
         priority:
           type: integer
           format: int32
-    ExecutionStatus:
-      type: object
-      description: Current state of a quantum job.
-      properties:
-        state:
-          type: string
-          enum:
-          - STATE_UNSPECIFIED
-          - READY
-          - RUNNING
-          - CANCELLING
-          - CANCELLED
-          - SUCCESS
-          - FAILURE
-        processorName:
-          type: string
-        failure:
-          type: object
-          properties:
-            errorCode:
-              type: string
-            errorMessage:
-              type: string
-    Empty:
-      type: object
-      description: An empty response body.
     QuantumJob:
       type: object
       description: An execution of a quantum program on a processor or simulator.
@@ -252,66 +291,6 @@ components:
           description: Serialised `google.protobuf.Any` run context (sweep parameters, repetitions).
         executionStatus:
           $ref: '#/components/schemas/ExecutionStatus'
-    ListQuantumJobsResponse:
-      type: object
-      properties:
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumJob'
-        nextPageToken:
-          type: string
-  parameters:
-    JobName:
-      name: name
-      in: path
-      required: true
-      description: The job resource name.
-      schema:
-        type: string
-    JobParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    ParentProgram:
-      name: parent
-      in: path
-      required: true
-      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+$
-    UpdateMask:
-      name: updateMask
-      in: query
-      description: FieldMask listing fields to update.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

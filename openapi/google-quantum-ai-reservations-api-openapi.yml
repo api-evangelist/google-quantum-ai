@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Google Quantum Engine Calibrations Reservations API
+  title: Google Quantum Engine Reservations API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com
@@ -254,6 +233,23 @@ components:
                 - UNALLOCATED
         nextPageToken:
           type: string
+    Empty:
+      type: object
+      description: An empty response body.
+    QuantumReservationGrant:
+      type: object
+      description: A reservation budget allocation granted to a project.
+      properties:
+        name:
+          type: string
+        grantedDuration:
+          type: string
+        consumedDuration:
+          type: string
+        whitelistedProjects:
+          type: array
+          items:
+            type: string
     ListQuantumReservationsResponse:
       type: object
       properties:
@@ -263,9 +259,31 @@ components:
             $ref: '#/components/schemas/QuantumReservation'
         nextPageToken:
           type: string
-    Empty:
+    ListQuantumReservationGrantsResponse:
       type: object
-      description: An empty response body.
+      properties:
+        reservationGrants:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumReservationGrant'
+        nextPageToken:
+          type: string
+    QuantumReservation:
+      type: object
+      description: A reservation of processor time.
+      properties:
+        name:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        whitelistedUsers:
+          type: array
+          items:
+            type: string
     ReallocateRequest:
       type: object
       properties:
@@ -290,46 +308,16 @@ components:
                 type: string
         nextPageToken:
           type: string
-    QuantumReservation:
-      type: object
-      description: A reservation of processor time.
-      properties:
-        name:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        whitelistedUsers:
-          type: array
-          items:
-            type: string
-    ListQuantumReservationGrantsResponse:
-      type: object
-      properties:
-        reservationGrants:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumReservationGrant'
-        nextPageToken:
-          type: string
-    QuantumReservationGrant:
-      type: object
-      description: A reservation budget allocation granted to a project.
-      properties:
-        name:
-          type: string
-        grantedDuration:
-          type: string
-        consumedDuration:
-          type: string
-        whitelistedProjects:
-          type: array
-          items:
-            type: string
   parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
     ParentProject:
       name: parent
       in: path
@@ -338,11 +326,10 @@ components:
       schema:
         type: string
         pattern: ^projects/[^/]+$
-    ReservationGrantName:
-      name: name
-      in: path
-      required: true
-      description: The reservation grant resource name.
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
     ProcessorParent:
@@ -353,19 +340,17 @@ components:
       schema:
         type: string
         pattern: ^projects/[^/]+/processors/[^/]+$
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
     PageToken:
       name: pageToken
       in: query
       description: Continuation token from a previous list response.
+      schema:
+        type: string
+    ReservationGrantName:
+      name: name
+      in: path
+      required: true
+      description: The reservation grant resource name.
       schema:
         type: string
     ReservationName:
@@ -379,12 +364,6 @@ components:
       name: updateMask
       in: query
       description: FieldMask listing fields to update.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
   securitySchemes:

@@ -1,12 +1,7 @@
 {
   "provider": "google-quantum-ai",
   "sources": [
-    "google-quantum-ai-calibrations-api-openapi.yml",
-    "google-quantum-ai-jobs-api-openapi.yml",
-    "google-quantum-ai-processors-api-openapi.yml",
-    "google-quantum-ai-programs-api-openapi.yml",
-    "google-quantum-ai-reservations-api-openapi.yml",
-    "google-quantum-ai-results-api-openapi.yml"
+    "_original/quantum-engine-api-openapi.yml"
   ],
   "outputs": [
     "google-quantum-ai-calibrations-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "quantum-engine-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "google-quantum-ai-calibrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-quantum-ai-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-quantum-ai-processors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-quantum-ai-programs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-quantum-ai-reservations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-quantum-ai-results-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

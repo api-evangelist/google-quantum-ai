@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Google Quantum Engine Calibrations Programs API
+  title: Google Quantum Engine Programs API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com
@@ -133,7 +112,62 @@ paths:
               schema:
                 $ref: '#/components/schemas/Empty'
 components:
+  parameters:
+    ProgramName:
+      name: name
+      in: path
+      required: true
+      description: The program resource name.
+      schema:
+        type: string
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
   schemas:
+    Empty:
+      type: object
+      description: An empty response body.
+    ListQuantumProgramsResponse:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumProgram'
+        nextPageToken:
+          type: string
     QuantumProgram:
       type: object
       description: A quantum program — a serialised quantum circuit uploaded to a project.
@@ -158,61 +192,6 @@ components:
         code:
           type: object
           description: Serialised Cirq/Quantum Engine circuit payload (`google.protobuf.Any`).
-    ListQuantumProgramsResponse:
-      type: object
-      properties:
-        programs:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumProgram'
-        nextPageToken:
-          type: string
-    Empty:
-      type: object
-      description: An empty response body.
-  parameters:
-    ProgramName:
-      name: name
-      in: path
-      required: true
-      description: The program resource name.
-      schema:
-        type: string
-    ParentProject:
-      name: parent
-      in: path
-      required: true
-      description: The parent project resource, formatted as `projects/{project_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+$
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    UpdateMask:
-      name: updateMask
-      in: query
-      description: FieldMask listing fields to update.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

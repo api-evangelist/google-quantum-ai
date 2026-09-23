@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Google Quantum Engine Calibrations API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com
@@ -80,37 +59,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumCalibration'
 components:
-  schemas:
-    ListQuantumCalibrationsResponse:
-      type: object
-      properties:
-        calibrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumCalibration'
-        nextPageToken:
-          type: string
-    QuantumCalibration:
-      type: object
-      description: A calibration snapshot for a processor.
-      properties:
-        name:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        data:
-          type: object
-          description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
   parameters:
-    ProcessorParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/processors/[^/]+$
     PageSize:
       name: pageSize
       in: query
@@ -127,18 +76,48 @@ components:
       description: The calibration resource name.
       schema:
         type: string
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
     Filter:
       name: filter
       in: query
       description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+  schemas:
+    QuantumCalibration:
+      type: object
+      description: A calibration snapshot for a processor.
+      properties:
+        name:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
+    ListQuantumCalibrationsResponse:
+      type: object
+      properties:
+        calibrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumCalibration'
+        nextPageToken:
+          type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

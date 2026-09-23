@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Google Quantum Engine Calibrations Results API
+  title: Google Quantum Engine Results API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com

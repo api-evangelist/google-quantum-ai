@@ -1,31 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Google Quantum Engine Calibrations Processors API
+  title: Google Quantum Engine Processors API
   version: v1alpha1
   description: 'REST surface of the Google Quantum Engine service (`quantum.googleapis.com`,
 
-    `google.cloud.quantum.v1alpha1.QuantumEngineService`). The Quantum Engine
-
-    accepts hardware-compatible quantum circuits as **programs**, executes them
-
-    as **jobs** on Google''s superconducting **processors** (Willow- and
-
-    Sycamore-class), manages **reservations** of processor time, and exposes
-
-    processor **calibration** snapshots. The canonical client is the
-
-    `cirq-google` Python package (`cirq_google.Engine`).
-
-
-    Access is restricted: callers must use a Google Cloud project with the
-
-    Quantum Engine API enabled, be on the approved-user list, and authenticate
-
-    using Application Default Credentials (OAuth 2.0 with the
-
-    `https://www.googleapis.com/auth/cloud-platform` scope).
-
-    '
+    `google.cloud.quantum.v1alpha1.QuantumEngineService`).'
   contact:
     name: Cirq Maintainers
     email: cirq-maintainers@googlegroups.com
@@ -80,16 +59,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumProcessor'
 components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    ProcessorName:
+      name: name
+      in: path
+      required: true
+      description: The processor resource name.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
   schemas:
-    ListQuantumProcessorsResponse:
-      type: object
-      properties:
-        processors:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumProcessor'
-        nextPageToken:
-          type: string
     QuantumProcessor:
       type: object
       description: A quantum processing unit available to the project.
@@ -116,43 +123,15 @@ components:
         deviceSpec:
           type: object
           description: Serialised `DeviceSpecification` protobuf.
-  parameters:
-    ParentProject:
-      name: parent
-      in: path
-      required: true
-      description: The parent project resource, formatted as `projects/{project_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+$
-    ProcessorName:
-      name: name
-      in: path
-      required: true
-      description: The processor resource name.
-      schema:
-        type: string
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
+    ListQuantumProcessorsResponse:
+      type: object
+      properties:
+        processors:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumProcessor'
+        nextPageToken:
+          type: string
   securitySchemes:
     googleOAuth:
       type: oauth2
