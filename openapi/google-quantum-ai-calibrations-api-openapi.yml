@@ -69,6 +69,12 @@ components:
         format: int32
         minimum: 1
         maximum: 1000
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
     CalibrationName:
       name: name
       in: path
@@ -90,13 +96,16 @@ components:
       schema:
         type: string
         pattern: ^projects/[^/]+/processors/[^/]+$
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
   schemas:
+    ListQuantumCalibrationsResponse:
+      type: object
+      properties:
+        calibrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumCalibration'
+        nextPageToken:
+          type: string
     QuantumCalibration:
       type: object
       description: A calibration snapshot for a processor.
@@ -109,15 +118,6 @@ components:
         data:
           type: object
           description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
-    ListQuantumCalibrationsResponse:
-      type: object
-      properties:
-        calibrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumCalibration'
-        nextPageToken:
-          type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

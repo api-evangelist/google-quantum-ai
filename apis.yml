@@ -8,13 +8,14 @@ apis:
   - SDK
   - Python
   - NISQ
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - SDK
   - Python
   - NISQ
   - Open Source
+  - Open-Source
   humanURL: https://quantumai.google/cirq
   properties:
   - url: https://quantumai.google/cirq
@@ -39,12 +40,13 @@ apis:
   - Quantum Computing
   - Simulation
   - Performance
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Simulation
   - Performance
   - Open Source
+  - Open-Source
   humanURL: https://quantumai.google/qsim
   properties:
   - url: https://quantumai.google/qsim
@@ -63,12 +65,13 @@ apis:
   - Quantum Computing
   - Chemistry
   - Materials Science
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Chemistry
   - Materials Science
   - Open Source
+  - Open-Source
   humanURL: https://quantumai.google/openfermion
   properties:
   - url: https://quantumai.google/openfermion
@@ -88,12 +91,13 @@ apis:
   - Quantum Computing
   - Error Correction
   - Stabilizer
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Error Correction
   - Stabilizer
   - Open Source
+  - Open-Source
   humanURL: https://github.com/quantumlib/Stim
   properties:
   - url: https://github.com/quantumlib/Stim
@@ -110,12 +114,13 @@ apis:
   - Quantum Computing
   - Algorithms
   - Resource Estimation
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Algorithms
   - Resource Estimation
   - Open Source
+  - Open-Source
   humanURL: https://github.com/quantumlib/qualtran
   properties:
   - url: https://github.com/quantumlib/qualtran
@@ -130,14 +135,16 @@ apis:
   name: TensorFlow Quantum
   tags:
   - Quantum Computing
-  - Machine-Learning
+  - Machine Learning
   - Hybrid
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Machine Learning
   - Hybrid
   - Open Source
+  - Machine-Learning
+  - Open-Source
   humanURL: https://www.tensorflow.org/quantum
   properties:
   - url: https://www.tensorflow.org/quantum
@@ -156,12 +163,13 @@ apis:
   - Quantum Computing
   - Research
   - Experiments
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Research
   - Experiments
   - Open Source
+  - Open-Source
   humanURL: https://github.com/quantumlib/ReCirq
   properties:
   - url: https://github.com/quantumlib/ReCirq
@@ -176,12 +184,13 @@ apis:
   - Quantum Computing
   - Error Correction
   - Decoder
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Error Correction
   - Decoder
   - Open Source
+  - Open-Source
   humanURL: https://github.com/quantumlib/tesseract-decoder
   properties:
   - url: https://github.com/quantumlib/tesseract-decoder
@@ -195,12 +204,13 @@ apis:
   - Quantum Computing
   - Games
   - Education
-  - Open-Source
+  - Open Source
   tags_raw:
   - Quantum Computing
   - Games
   - Education
   - Open Source
+  - Open-Source
   humanURL: https://github.com/quantumlib/unitary
   properties:
   - url: https://github.com/quantumlib/unitary
