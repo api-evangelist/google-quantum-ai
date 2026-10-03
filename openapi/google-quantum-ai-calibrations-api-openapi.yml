@@ -60,19 +60,24 @@ paths:
                 $ref: '#/components/schemas/QuantumCalibration'
 components:
   parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
       schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
     PageToken:
       name: pageToken
       in: query
       description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
     CalibrationName:
@@ -82,20 +87,15 @@ components:
       description: The calibration resource name.
       schema:
         type: string
-    Filter:
-      name: filter
+    PageSize:
+      name: pageSize
       in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      description: Maximum number of items to return in a page.
       schema:
-        type: string
-    ProcessorParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/processors/[^/]+$
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
   schemas:
     ListQuantumCalibrationsResponse:
       type: object

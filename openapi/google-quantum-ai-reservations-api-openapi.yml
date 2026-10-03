@@ -208,81 +208,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumReservationGrant'
 components:
-  parameters:
-    ParentProject:
-      name: parent
-      in: path
-      required: true
-      description: The parent project resource, formatted as `projects/{project_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+$
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    ReservationName:
-      name: name
-      in: path
-      required: true
-      description: The reservation resource name.
-      schema:
-        type: string
-    ReservationGrantName:
-      name: name
-      in: path
-      required: true
-      description: The reservation grant resource name.
-      schema:
-        type: string
-    UpdateMask:
-      name: updateMask
-      in: query
-      description: FieldMask listing fields to update.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
-    ProcessorParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/processors/[^/]+$
   schemas:
-    ListQuantumReservationBudgetsResponse:
-      type: object
-      properties:
-        reservationBudgets:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              grantedDuration:
-                type: string
-              availableDuration:
-                type: string
-        nextPageToken:
-          type: string
     QuantumReservation:
       type: object
       description: A reservation of processor time.
@@ -313,13 +239,29 @@ components:
           type: array
           items:
             type: string
-    ListQuantumReservationsResponse:
+    ListQuantumReservationGrantsResponse:
       type: object
       properties:
-        reservations:
+        reservationGrants:
           type: array
           items:
-            $ref: '#/components/schemas/QuantumReservation'
+            $ref: '#/components/schemas/QuantumReservationGrant'
+        nextPageToken:
+          type: string
+    ListQuantumReservationBudgetsResponse:
+      type: object
+      properties:
+        reservationBudgets:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              grantedDuration:
+                type: string
+              availableDuration:
+                type: string
         nextPageToken:
           type: string
     ReallocateRequest:
@@ -357,15 +299,73 @@ components:
                 - UNALLOCATED
         nextPageToken:
           type: string
-    ListQuantumReservationGrantsResponse:
+    ListQuantumReservationsResponse:
       type: object
       properties:
-        reservationGrants:
+        reservations:
           type: array
           items:
-            $ref: '#/components/schemas/QuantumReservationGrant'
+            $ref: '#/components/schemas/QuantumReservation'
         nextPageToken:
           type: string
+  parameters:
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    ReservationName:
+      name: name
+      in: path
+      required: true
+      description: The reservation resource name.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    ReservationGrantName:
+      name: name
+      in: path
+      required: true
+      description: The reservation grant resource name.
+      schema:
+        type: string
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

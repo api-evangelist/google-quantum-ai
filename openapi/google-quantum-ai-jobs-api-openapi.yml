@@ -148,29 +148,6 @@ paths:
                 $ref: '#/components/schemas/ListQuantumJobEventsResponse'
 components:
   schemas:
-    ExecutionStatus:
-      type: object
-      description: Current state of a quantum job.
-      properties:
-        state:
-          type: string
-          enum:
-          - STATE_UNSPECIFIED
-          - READY
-          - RUNNING
-          - CANCELLING
-          - CANCELLED
-          - SUCCESS
-          - FAILURE
-        processorName:
-          type: string
-        failure:
-          type: object
-          properties:
-            errorCode:
-              type: string
-            errorMessage:
-              type: string
     QuantumJob:
       type: object
       description: An execution of a quantum program on a processor or simulator.
@@ -199,6 +176,15 @@ components:
           description: Serialised `google.protobuf.Any` run context (sweep parameters, repetitions).
         executionStatus:
           $ref: '#/components/schemas/ExecutionStatus'
+    ListQuantumJobsResponse:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumJob'
+        nextPageToken:
+          type: string
     ListQuantumJobEventsResponse:
       type: object
       properties:
@@ -231,21 +217,48 @@ components:
         priority:
           type: integer
           format: int32
-    ListQuantumJobsResponse:
+    ExecutionStatus:
       type: object
+      description: Current state of a quantum job.
       properties:
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumJob'
-        nextPageToken:
+        state:
           type: string
+          enum:
+          - STATE_UNSPECIFIED
+          - READY
+          - RUNNING
+          - CANCELLING
+          - CANCELLED
+          - SUCCESS
+          - FAILURE
+        processorName:
+          type: string
+        failure:
+          type: object
+          properties:
+            errorCode:
+              type: string
+            errorMessage:
+              type: string
   parameters:
-    JobName:
-      name: name
+    JobParent:
+      name: parent
       in: path
       required: true
-      description: The job resource name.
+      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
     PageSize:
@@ -257,18 +270,11 @@ components:
         format: int32
         minimum: 1
         maximum: 1000
-    ParentProgram:
-      name: parent
+    JobName:
+      name: name
       in: path
       required: true
-      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+$
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
+      description: The job resource name.
       schema:
         type: string
     UpdateMask:
@@ -277,20 +283,14 @@ components:
       description: FieldMask listing fields to update.
       schema:
         type: string
-    JobParent:
+    ParentProgram:
       name: parent
       in: path
       required: true
-      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
       schema:
         type: string
-        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+$
   securitySchemes:
     googleOAuth:
       type: oauth2
