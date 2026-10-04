@@ -59,15 +59,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumCalibration'
 components:
+  schemas:
+    QuantumCalibration:
+      type: object
+      description: A calibration snapshot for a processor.
+      properties:
+        name:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
+    ListQuantumCalibrationsResponse:
+      type: object
+      properties:
+        calibrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantumCalibration'
+        nextPageToken:
+          type: string
   parameters:
-    ProcessorParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/processors/[^/]+$
     PageToken:
       name: pageToken
       in: query
@@ -87,6 +101,14 @@ components:
       description: The calibration resource name.
       schema:
         type: string
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
     PageSize:
       name: pageSize
       in: query
@@ -96,28 +118,6 @@ components:
         format: int32
         minimum: 1
         maximum: 1000
-  schemas:
-    ListQuantumCalibrationsResponse:
-      type: object
-      properties:
-        calibrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumCalibration'
-        nextPageToken:
-          type: string
-    QuantumCalibration:
-      type: object
-      description: A calibration snapshot for a processor.
-      properties:
-        name:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        data:
-          type: object
-          description: Serialised `Metrics` protobuf with per-gate and per-qubit calibration metrics.
   securitySchemes:
     googleOAuth:
       type: oauth2

@@ -208,37 +208,77 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumReservationGrant'
 components:
+  parameters:
+    ReservationGrantName:
+      name: name
+      in: path
+      required: true
+      description: The reservation grant resource name.
+      schema:
+        type: string
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    ReservationName:
+      name: name
+      in: path
+      required: true
+      description: The reservation resource name.
+      schema:
+        type: string
+    ProcessorParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/processors/[^/]+$
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
   schemas:
-    QuantumReservation:
+    Empty:
       type: object
-      description: A reservation of processor time.
+      description: An empty response body.
+    ListQuantumReservationsResponse:
+      type: object
       properties:
-        name:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        whitelistedUsers:
+        reservations:
           type: array
           items:
-            type: string
-    QuantumReservationGrant:
-      type: object
-      description: A reservation budget allocation granted to a project.
-      properties:
-        name:
+            $ref: '#/components/schemas/QuantumReservation'
+        nextPageToken:
           type: string
-        grantedDuration:
-          type: string
-        consumedDuration:
-          type: string
-        whitelistedProjects:
-          type: array
-          items:
-            type: string
     ListQuantumReservationGrantsResponse:
       type: object
       properties:
@@ -264,6 +304,20 @@ components:
                 type: string
         nextPageToken:
           type: string
+    QuantumReservationGrant:
+      type: object
+      description: A reservation budget allocation granted to a project.
+      properties:
+        name:
+          type: string
+        grantedDuration:
+          type: string
+        consumedDuration:
+          type: string
+        whitelistedProjects:
+          type: array
+          items:
+            type: string
     ReallocateRequest:
       type: object
       properties:
@@ -272,9 +326,22 @@ components:
         duration:
           type: string
           description: Duration in seconds (e.g. `3600s`).
-    Empty:
+    QuantumReservation:
       type: object
-      description: An empty response body.
+      description: A reservation of processor time.
+      properties:
+        name:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        whitelistedUsers:
+          type: array
+          items:
+            type: string
     ListQuantumTimeSlotsResponse:
       type: object
       properties:
@@ -299,73 +366,6 @@ components:
                 - UNALLOCATED
         nextPageToken:
           type: string
-    ListQuantumReservationsResponse:
-      type: object
-      properties:
-        reservations:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantumReservation'
-        nextPageToken:
-          type: string
-  parameters:
-    ProcessorParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent processor resource, formatted as `projects/{project_id}/processors/{processor_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/processors/[^/]+$
-    ParentProject:
-      name: parent
-      in: path
-      required: true
-      description: The parent project resource, formatted as `projects/{project_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+$
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    ReservationName:
-      name: name
-      in: path
-      required: true
-      description: The reservation resource name.
-      schema:
-        type: string
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
-    ReservationGrantName:
-      name: name
-      in: path
-      required: true
-      description: The reservation grant resource name.
-      schema:
-        type: string
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
-    UpdateMask:
-      name: updateMask
-      in: query
-      description: FieldMask listing fields to update.
-      schema:
-        type: string
   securitySchemes:
     googleOAuth:
       type: oauth2

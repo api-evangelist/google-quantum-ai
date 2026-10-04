@@ -96,17 +96,17 @@ components:
           type: object
           description: Serialised `DeviceSpecification` protobuf.
   parameters:
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
     ProcessorName:
       name: name
       in: path
       required: true
       description: The processor resource name.
-      schema:
-        type: string
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
       schema:
         type: string
     Filter:
@@ -115,6 +115,14 @@ components:
       description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
       schema:
         type: string
+    ParentProject:
+      name: parent
+      in: path
+      required: true
+      description: The parent project resource, formatted as `projects/{project_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+$
     PageSize:
       name: pageSize
       in: query
@@ -124,14 +132,6 @@ components:
         format: int32
         minimum: 1
         maximum: 1000
-    ParentProject:
-      name: parent
-      in: path
-      required: true
-      description: The parent project resource, formatted as `projects/{project_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+$
   securitySchemes:
     googleOAuth:
       type: oauth2
