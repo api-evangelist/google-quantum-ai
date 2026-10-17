@@ -147,10 +147,58 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListQuantumJobEventsResponse'
 components:
+  parameters:
+    JobName:
+      name: name
+      in: path
+      required: true
+      description: The job resource name.
+      schema:
+        type: string
+    JobParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
+    PageToken:
+      name: pageToken
+      in: query
+      description: Continuation token from a previous list response.
+      schema:
+        type: string
+    Filter:
+      name: filter
+      in: query
+      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
+      schema:
+        type: string
+    PageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of items to return in a page.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+    UpdateMask:
+      name: updateMask
+      in: query
+      description: FieldMask listing fields to update.
+      schema:
+        type: string
+    ParentProgram:
+      name: parent
+      in: path
+      required: true
+      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+$
   schemas:
-    Empty:
-      type: object
-      description: An empty response body.
     ListQuantumJobsResponse:
       type: object
       properties:
@@ -160,29 +208,6 @@ components:
             $ref: '#/components/schemas/QuantumJob'
         nextPageToken:
           type: string
-    ExecutionStatus:
-      type: object
-      description: Current state of a quantum job.
-      properties:
-        state:
-          type: string
-          enum:
-          - STATE_UNSPECIFIED
-          - READY
-          - RUNNING
-          - CANCELLING
-          - CANCELLED
-          - SUCCESS
-          - FAILURE
-        processorName:
-          type: string
-        failure:
-          type: object
-          properties:
-            errorCode:
-              type: string
-            errorMessage:
-              type: string
     ListQuantumJobEventsResponse:
       type: object
       properties:
@@ -226,6 +251,32 @@ components:
           description: Serialised `google.protobuf.Any` run context (sweep parameters, repetitions).
         executionStatus:
           $ref: '#/components/schemas/ExecutionStatus'
+    ExecutionStatus:
+      type: object
+      description: Current state of a quantum job.
+      properties:
+        state:
+          type: string
+          enum:
+          - STATE_UNSPECIFIED
+          - READY
+          - RUNNING
+          - CANCELLING
+          - CANCELLED
+          - SUCCESS
+          - FAILURE
+        processorName:
+          type: string
+        failure:
+          type: object
+          properties:
+            errorCode:
+              type: string
+            errorMessage:
+              type: string
+    Empty:
+      type: object
+      description: An empty response body.
     SchedulingConfig:
       type: object
       description: Job scheduling configuration including processor selector and priority.
@@ -240,57 +291,6 @@ components:
         priority:
           type: integer
           format: int32
-  parameters:
-    JobParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
-    PageToken:
-      name: pageToken
-      in: query
-      description: Continuation token from a previous list response.
-      schema:
-        type: string
-    ParentProgram:
-      name: parent
-      in: path
-      required: true
-      description: The parent program resource, formatted as `projects/{project_id}/programs/{program_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+$
-    Filter:
-      name: filter
-      in: query
-      description: AIP-160 filter expression (e.g., `labels.team = quantum`, `executionStatus.state = SUCCESS`).
-      schema:
-        type: string
-    JobName:
-      name: name
-      in: path
-      required: true
-      description: The job resource name.
-      schema:
-        type: string
-    UpdateMask:
-      name: updateMask
-      in: query
-      description: FieldMask listing fields to update.
-      schema:
-        type: string
-    PageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of items to return in a page.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 1000
   securitySchemes:
     googleOAuth:
       type: oauth2

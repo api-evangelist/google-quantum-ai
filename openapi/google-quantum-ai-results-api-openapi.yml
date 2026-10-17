@@ -39,6 +39,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuantumResult'
 components:
+  parameters:
+    JobParent:
+      name: parent
+      in: path
+      required: true
+      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
+      schema:
+        type: string
+        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
   schemas:
     QuantumResult:
       type: object
@@ -49,15 +58,6 @@ components:
         result:
           type: object
           description: Serialised `google.protobuf.Any` Cirq result payload.
-  parameters:
-    JobParent:
-      name: parent
-      in: path
-      required: true
-      description: The parent job resource, formatted as `projects/{project_id}/programs/{program_id}/jobs/{job_id}`.
-      schema:
-        type: string
-        pattern: ^projects/[^/]+/programs/[^/]+/jobs/[^/]+$
   securitySchemes:
     googleOAuth:
       type: oauth2
